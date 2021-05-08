@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.Mappings;
 using Wjakimszkle.DataAccess;
 
 namespace Wjakimszkle
@@ -30,6 +31,8 @@ namespace Wjakimszkle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IQueryExecutor, QueryExecutor>();
+            services.AddAutoMapper(typeof(DrinksProfile).Assembly);
             services.AddMediatR(typeof(ResponseBase<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddDbContext<LiquorRegisterContext>(

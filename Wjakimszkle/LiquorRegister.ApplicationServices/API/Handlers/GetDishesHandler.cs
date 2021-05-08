@@ -19,9 +19,9 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
             this.dishRepository = dishRepository;
         }
 
-        public Task<GetDishesResponse> Handle(GetDishesRequest request, CancellationToken cancellationToken)
+        public async Task<GetDishesResponse> Handle(GetDishesRequest request, CancellationToken cancellationToken)
         {
-            var dishes = this.dishRepository.GetAll();
+            var dishes = await this.dishRepository.GetAll();
             var domainDishes = dishes.Select(d => new Domain.Models.Dish()
             {
                 Id = d.Id,
@@ -33,7 +33,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
                 Data = domainDishes.ToList()
             };
 
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

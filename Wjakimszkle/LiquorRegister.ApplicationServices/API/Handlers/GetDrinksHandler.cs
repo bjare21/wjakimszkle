@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,32 +8,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.DataAccess;
+using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers
 {
     public class GetDrinksHandler:IRequestHandler<GetDrinksRequest, GetDrinksResponse>
     {
-        private readonly IRepository<Drink> drinkRepository;
-        public GetDrinksHandler(IRepository<Drink> drinkRepository)
+        private readonly IQueryExecutor queryExecutor;
+        private readonly IMapper mapper;
+        public GetDrinksHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            this.drinkRepository = drinkRepository;
+            this.queryExecutor = queryExecutor;
+            this.mapper = mapper;
         }
-        public Task<GetDrinksResponse> Handle(GetDrinksRequest request, CancellationToken cancellationToken)
+        public async Task<GetDrinksResponse> Handle(GetDrinksRequest request, CancellationToken cancellationToken)
         {
-            var drinks = this.drinkRepository.GetAll();
-            var domainDrinks = drinks.Select(d => new Domain.Models.Drink()
-            {
-                Id = d.Id,
-                Name = d.Name
-            });
+            var query = new GetDrinksQuery();
+            var drinks = await this.queryExecutor.Execute(query);
+            var mappedDrink = this.mapper.Map<List<Domain.Models.Drink>>(drinks);
+            
+            //var domainDrinks = drinks.Select(d => new Domain.Models.Drink()
+            //{
+            //    Id = d.Id,
+            //    Name = d.Name
+            //});
 
             var response = new GetDrinksResponse()
             {
-                Data = domainDrinks.ToList()
+                Data = mappedDrink
             };
 
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

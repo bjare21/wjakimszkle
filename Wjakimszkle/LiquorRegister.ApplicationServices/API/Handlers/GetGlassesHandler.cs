@@ -20,9 +20,9 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
             this.glassRepository = glassRepository;
         }
 
-        public Task<GetGlassesResponse> Handle(GetGlassesRequest request, CancellationToken cancellationToken)
+        public async Task<GetGlassesResponse> Handle(GetGlassesRequest request, CancellationToken cancellationToken)
         {
-            var glasses = this.glassRepository.GetAll();
+            var glasses = await this .glassRepository.GetAll();
             var domainGlasses = glasses.Select(g => new Domain.Models.Glass()
             {
                 Id = g.Id,
@@ -34,7 +34,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
                 Data = domainGlasses.ToList()
             };
 
-            return Task.FromResult(response);
+            return response;
         }
 
     }
