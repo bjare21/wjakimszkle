@@ -10,12 +10,10 @@ namespace Wjakimszkle.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GlassesController : ControllerBase
+    public class GlassesController : ApiControllerBase
     {
-        private readonly IMediator mediator;
-        public GlassesController(IMediator mediator)
+        public GlassesController(IMediator mediator):base(mediator)
         {
-            this.mediator = mediator;
         }
 
         [HttpGet]
@@ -28,10 +26,16 @@ namespace Wjakimszkle.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public async Task<IActionResult> AddGlass([FromBody] AddGlassRequest request)
+        public Task<IActionResult> AddGlass([FromBody] AddGlassRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<AddGlassRequest, AddGlassResponse>(request);
+            
+            //if (!this.ModelState.IsValid)
+            //{
+            //    return this.BadRequest("BAD_REQUEST_1234");
+            //}
+            //var response = await this.mediator.Send(request);
+            //return this.Ok(response);
         }
 
         [HttpGet]
