@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain
 {
-    public class GetDrinksRequest:IRequest<GetDrinksResponse>
+    public class RemoveDrinkRequest:IRequest<RemoveDrinkResponse>
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -24,7 +24,10 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
         }
         public async Task<GetDrinksResponse> Handle(GetDrinksRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetDrinksQuery();
+            var query = new GetDrinksQuery()
+            {
+                Name = request.Name
+            };
             var drinks = await this.queryExecutor.Execute(query);
             var mappedDrink = this.mapper.Map<List<Domain.Models.Drink>>(drinks);
             

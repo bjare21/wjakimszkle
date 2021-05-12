@@ -17,6 +17,23 @@ namespace Wjakimszkle.Controllers
         {
             this.mediator = mediator;
         }
+
+        [HttpGet]
+        [Route("Remove")]
+        public async Task<IActionResult> RemoveGlass([FromQuery] RemoveGlassRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
+
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> AddGlass([FromBody] AddGlassRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
+
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllGlasses([FromQuery] GetGlassesRequest request)
@@ -25,6 +42,6 @@ namespace Wjakimszkle.Controllers
             return this.Ok(response);
         }
 
-
+        
     }
 }

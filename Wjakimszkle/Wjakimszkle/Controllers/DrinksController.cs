@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.Entities;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 
 namespace Wjakimszkle.Controllers
 {
@@ -19,6 +20,23 @@ namespace Wjakimszkle.Controllers
         {
             this.mediator = mediator;
         }
+
+        [HttpGet]
+        [Route("Edit")]
+        public async Task<IActionResult> Edit([FromQuery] EditDrinkRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
+
+        [HttpGet]
+        [Route("Remove")]
+        public async Task<IActionResult> Remove([FromQuery] RemoveDrinkRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
+
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllDrinks([FromQuery] GetDrinksRequest request)

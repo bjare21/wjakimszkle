@@ -10,9 +10,12 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
 {
     public class GetDrinksQuery:QueryBase<List<Drink>>
     {
+        public string Name { get; set; }
         public override Task<List<Drink>> Execute(LiquorRegisterContext context)
         {
-            return context.Drinks.ToListAsync();
+            return !string.IsNullOrWhiteSpace(this.Name)?
+                context.Drinks.Where(x=>x.Name  == this.Name).ToListAsync()
+                :context.Drinks.ToListAsync();
         }
     }
 }
