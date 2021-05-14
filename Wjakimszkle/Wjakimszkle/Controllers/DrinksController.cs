@@ -8,20 +8,28 @@ using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.Entities;
 using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
+using Microsoft.Extensions.Logging;
 
 namespace Wjakimszkle.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DrinksController : ControllerBase
+    public class DrinksController : ApiControllerBase
     {
-        private readonly IMediator mediator;
-        public DrinksController(IMediator mediator)
+        public DrinksController(IMediator mediator, ILogger<DrinksController> logger) : base(mediator)
         {
-            this.mediator = mediator;
+            logger.LogInformation(message:"We are in drinks controller");
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> Add([FromBody] AddDrinkRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
+
+        [HttpPut]
         [Route("Edit")]
         public async Task<IActionResult> Edit([FromQuery] EditDrinkRequest request)
         {
@@ -29,7 +37,7 @@ namespace Wjakimszkle.Controllers
             return this.Ok(response);
         }
 
-        [HttpGet]
+        [HttpDelete]
         [Route("Remove")]
         public async Task<IActionResult> Remove([FromQuery] RemoveDrinkRequest request)
         {
@@ -43,6 +51,17 @@ namespace Wjakimszkle.Controllers
         {
             var response = await this.mediator.Send(request);
             return this.Ok(response);
+        }
+
+        [HttpGet]
+        [Route("{drinkId}")]
+        public Task<IActionResult> GetDrinkById([FromRoute] int drinkId)
+        {
+            var request = new GetDrinkByIdRequest()
+            {
+                DrinkId = drinkId
+            };
+            return this.HandleRequest<GetDrinkByIdRequest, GetDrinkByIdResponse>(request);
         }
 
         //[HttpGet]

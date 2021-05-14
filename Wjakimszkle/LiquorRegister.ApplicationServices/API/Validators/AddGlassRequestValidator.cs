@@ -13,6 +13,7 @@ namespace Wjakimszkle.ApplicationServices.API.Validators
         public AddGlassRequestValidator()
         {
             this.RuleFor(x => x.Name).Length(1, 250).WithMessage("WRONG_RANGE");
+            this.RuleFor(x => x.Id).LessThanOrEqualTo(100);
         }
     }
 }

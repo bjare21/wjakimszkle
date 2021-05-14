@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.ErrorHandling;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 
@@ -31,6 +32,15 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
             };
 
             var drink = await this.queryExecutor.Execute(query);
+
+            if (drink == null)
+            {
+                return new GetDrinkByIdResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var mappedDrink = this.mapper.Map<Domain.Models.Drink>(drink);
             var response = new GetDrinkByIdResponse()
             {

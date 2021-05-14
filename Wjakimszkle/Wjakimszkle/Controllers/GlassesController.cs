@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.Domain.Glasses;
 
 namespace Wjakimszkle.Controllers
 {
@@ -16,7 +17,7 @@ namespace Wjakimszkle.Controllers
         {
         }
 
-        [HttpGet]
+        [HttpDelete]
         [Route("Remove")]
         public async Task<IActionResult> RemoveGlass([FromQuery] RemoveGlassRequest request)
         {
@@ -36,6 +37,14 @@ namespace Wjakimszkle.Controllers
             //}
             //var response = await this.mediator.Send(request);
             //return this.Ok(response);
+        }
+
+        [HttpPut]
+        [Route("Edit")]
+        public async Task<IActionResult> EditGlass([FromQuery] EditGlassRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
         }
 
         [HttpGet]

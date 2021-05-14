@@ -9,6 +9,7 @@ namespace Wjakimszkle.ApplicationServices.API.Domain
 {
     public class AddGlassRequest:IRequest<AddGlassResponse>
     {
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
