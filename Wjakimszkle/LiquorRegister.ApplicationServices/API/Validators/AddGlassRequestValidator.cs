@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.Domain.Glasses;
 
 namespace Wjakimszkle.ApplicationServices.API.Validators
 {

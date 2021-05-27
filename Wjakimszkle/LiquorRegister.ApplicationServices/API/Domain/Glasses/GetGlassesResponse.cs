@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain.Models;
 
-namespace Wjakimszkle.ApplicationServices.API.Domain
+namespace Wjakimszkle.ApplicationServices.API.Domain.Glasses
 {
-    public class GetDishesResponse : ResponseBase<List<Dish>>
+    public class GetGlassesResponse : ResponseBase<List<Glass>>
     {
 
     }

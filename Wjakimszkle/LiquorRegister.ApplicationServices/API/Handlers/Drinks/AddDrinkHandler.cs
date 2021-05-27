@@ -27,8 +27,13 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
         public async Task<AddDrinkResponse> Handle(AddDrinkRequest request, CancellationToken cancellationToken)
         {
             var drink = this.mapper.Map<Drink>(request);
-            var command = new AddDrinkCommand() { Parameter = drink };
-            var response =  await this.commandExecutor.Execute(command);
+            var command = new AddDrinkCommand()
+            {
+                Parameter = drink,
+                DrinkTypeId = request.DrinkTypeId
+            };
+
+            var response = await this.commandExecutor.Execute(command);
 
             return new AddDrinkResponse()
             {

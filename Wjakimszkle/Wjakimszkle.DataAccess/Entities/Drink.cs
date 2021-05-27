@@ -12,9 +12,7 @@ namespace Wjakimszkle.DataAccess.Entities
         [Required]
         [MaxLength(250)]
         public string Name { get; set; }
-
         public float AlcoholByVolume { get; set; }
-        public List<Glass> Glasses { get; set; }
-        public List<Dish> Dishes { get; set; }
+        public DrinkType DrinkType { get; set; }
     }
 }

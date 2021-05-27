@@ -1,14 +1,14 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wjakimszkle.ApplicationServices.API.Domain
+namespace Wjakimszkle.ApplicationServices.API.Domain.Models
 {
-    public class GetDrinksRequest:IRequest<GetDrinksResponse>
+    public class DrinkType
     {
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

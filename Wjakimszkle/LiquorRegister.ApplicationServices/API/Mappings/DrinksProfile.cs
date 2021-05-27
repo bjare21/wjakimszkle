@@ -17,10 +17,16 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
                 .ForMember(a => a.Name, b => b.MapFrom(c => c.Name))
                 .ForMember(a => a.AlcoholByVolume, b => b.MapFrom(c => c.AlcoholByVolume));
 
+            this.CreateMap<EditDrinkRequest, DataAccess.Entities.Drink>()
+                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name))
+                .ForMember(a => a.AlcoholByVolume, b => b.MapFrom(c => c.AlcoholByVolume))
+                .ForMember(a => a.DrinkType, b => b.MapFrom(b=>new DrinkType() { Id =  b.DrinkTypeId }));
+
             this.CreateMap<DataAccess.Entities.Drink, Drink>()
                 .ForMember(d => d.Id, m => m.MapFrom(r => r.Id))
                 .ForMember(d => d.Name, m => m.MapFrom(r => r.Name))
-                .ForMember(d => d.AlcoholByVolume, m => m.MapFrom(r => r.AlcoholByVolume));
+                .ForMember(d => d.AlcoholByVolume, m => m.MapFrom(r => r.AlcoholByVolume))
+                .ForMember(d => d.DrinkTypeName, m => m.MapFrom(r => r.DrinkType.Name));
         }
     }
 }

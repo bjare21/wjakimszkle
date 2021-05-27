@@ -9,7 +9,7 @@ namespace Wjakimszkle.DataAccess
 
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<Glass> Glasses { get; set; }
-
         public DbSet<Dish> Dishes { get; set; }
+        public DbSet<DrinkType> DrinkTypes { get; set; }
     }
 }

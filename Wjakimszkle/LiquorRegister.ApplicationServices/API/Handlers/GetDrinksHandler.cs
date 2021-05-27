@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
+using Wjakimszkle.ApplicationServices.Components.CocktailDb;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
@@ -17,17 +19,22 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers
     {
         private readonly IQueryExecutor queryExecutor;
         private readonly IMapper mapper;
-        public GetDrinksHandler(IMapper mapper, IQueryExecutor queryExecutor)
+        private readonly ICocktailDbConnector cocktailDbConnector;
+        public GetDrinksHandler(IMapper mapper, IQueryExecutor queryExecutor, ICocktailDbConnector cocktailDbConnector)
         {
             this.queryExecutor = queryExecutor;
             this.mapper = mapper;
+            this.cocktailDbConnector = cocktailDbConnector;
         }
         public async Task<GetDrinksResponse> Handle(GetDrinksRequest request, CancellationToken cancellationToken)
         {
+            var cocktails = await this.cocktailDbConnector.Fetch("gin");
+
             var query = new GetDrinksQuery()
             {
                 Name = request.Name
             };
+
             var drinks = await this.queryExecutor.Execute(query);
             var mappedDrink = this.mapper.Map<List<Domain.Models.Drink>>(drinks);
             

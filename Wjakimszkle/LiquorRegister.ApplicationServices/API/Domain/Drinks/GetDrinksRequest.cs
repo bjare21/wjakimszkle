@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Drinks
 {
-    public class AddDrinkRequest:IRequest<AddDrinkResponse>
+    public class GetDrinksRequest:IRequest<GetDrinksResponse>
     {
-        public int Id { get; set; }
-        public int DrinkTypeId { get; set; }
         public string Name { get; set; }
-        public float AlcoholByVolume { get; set; }
     }
 }

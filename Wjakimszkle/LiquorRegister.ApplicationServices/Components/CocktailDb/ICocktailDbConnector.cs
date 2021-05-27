@@ -8,6 +8,6 @@ namespace Wjakimszkle.ApplicationServices.Components.CocktailDb
 {
     public interface ICocktailDbConnector
     {
-        Task<List<Cocktail>> Fetch(int glassId);
+        Task<Cocktail> Fetch(string glassName);
     }
 }

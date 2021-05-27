@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain.Models;
 
-namespace Wjakimszkle.ApplicationServices.API.Domain
+namespace Wjakimszkle.ApplicationServices.API.Domain.Drinks
 {
-    public class GetDrinksResponse : ResponseBase<List<Drink>>
+    public class RemoveDrinkResponse:ResponseBase<Drink>
     {
-
     }
 }

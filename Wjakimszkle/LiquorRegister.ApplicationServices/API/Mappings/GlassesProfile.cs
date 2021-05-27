@@ -25,8 +25,7 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
             this.CreateMap<DataAccess.Entities.Glass, Glass>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
-                .ForMember(x => x.Drinks, y => y.MapFrom(z => z.Drinks != null ? z.Drinks.Select(d => d.Name) : new List<string>()));
-
+                .ForMember(x => x.DrinkTypes, y => y.MapFrom(z => z.DrinkTypes != null ? z.DrinkTypes.Select(dt => dt.Name) : new List<string>()));
         }
     }
 

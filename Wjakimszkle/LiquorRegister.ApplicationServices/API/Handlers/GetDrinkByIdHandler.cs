@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
+using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 using Wjakimszkle.ApplicationServices.API.ErrorHandling;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;

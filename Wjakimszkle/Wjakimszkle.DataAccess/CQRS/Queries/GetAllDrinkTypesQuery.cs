@@ -8,13 +8,11 @@ using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.DataAccess.CQRS.Queries
 {
-    public class GetGlassesQuery:QueryBase<List<Glass>>
+    public class GetAllDrinkTypesQuery : QueryBase<List<DrinkType>>
     {
-        public override Task<List<Glass>> Execute(LiquorRegisterContext context)
+        public override async Task<List<DrinkType>> Execute(LiquorRegisterContext context)
         {
-            return context.Glasses
-                .Include(g=>g.DrinkTypes)
-                .ToListAsync();
+            return await context.DrinkTypes.ToListAsync();
         }
     }
 }

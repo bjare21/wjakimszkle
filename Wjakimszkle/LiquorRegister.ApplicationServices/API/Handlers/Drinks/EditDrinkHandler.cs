@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Commands;
+using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 {
@@ -26,8 +27,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
         {
             var command = new EditDrinkCommand()
             {
-                Id = request.Id,
-                Name = request.Name
+                Parameter = this.mapper.Map<Drink>(request)
             };
 
             var response = await this.commandExecutor.Execute(command);

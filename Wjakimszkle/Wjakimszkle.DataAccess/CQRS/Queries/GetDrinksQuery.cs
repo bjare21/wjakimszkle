@@ -14,8 +14,8 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
         public override Task<List<Drink>> Execute(LiquorRegisterContext context)
         {
             return !string.IsNullOrWhiteSpace(this.Name)?
-                context.Drinks.Where(x=>x.Name  == this.Name).ToListAsync()
-                :context.Drinks.ToListAsync();
+                context.Drinks.Include(d=>d.DrinkType).Where(x=>x.Name  == this.Name).ToListAsync()
+                :context.Drinks.Include(d=>d.DrinkType).ToListAsync();
         }
     }
 }

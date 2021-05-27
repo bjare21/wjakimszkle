@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.Mappings;
 using Wjakimszkle.ApplicationServices.API.Validators;
+using Wjakimszkle.ApplicationServices.Components.CocktailDb;
 using Wjakimszkle.DataAccess;
 
 namespace Wjakimszkle
@@ -40,6 +41,8 @@ namespace Wjakimszkle
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
+            services.AddTransient<ICocktailDbConnector, CocktailDbConnector>();
 
             services.AddTransient<ICommandExecutor, CommandExecutor>();
             services.AddTransient<IQueryExecutor, QueryExecutor>();

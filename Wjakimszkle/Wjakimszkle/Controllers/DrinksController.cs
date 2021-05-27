@@ -16,17 +16,19 @@ namespace Wjakimszkle.Controllers
     [Route("[controller]")]
     public class DrinksController : ApiControllerBase
     {
+        private readonly ILogger<DrinksController> logger;
+
         public DrinksController(IMediator mediator, ILogger<DrinksController> logger) : base(mediator)
         {
-            logger.LogInformation(message:"We are in drinks controller");
+            this.logger = logger;
+            this.logger.LogInformation(message:"We are in drinks controller");
         }
 
         [HttpPost]
         [Route("Add")]
         public async Task<IActionResult> Add([FromBody] AddDrinkRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<AddDrinkRequest,AddDrinkResponse>(request);
         }
 
         [HttpPut]
@@ -50,6 +52,7 @@ namespace Wjakimszkle.Controllers
         public async Task<IActionResult> GetAllDrinks([FromQuery] GetDrinksRequest request)
         {
             var response = await this.mediator.Send(request);
+            this.logger.LogInformation($"Request for all Drinks in database, resulted in {response.Data.Count} rows.");
             return this.Ok(response);
         }
 

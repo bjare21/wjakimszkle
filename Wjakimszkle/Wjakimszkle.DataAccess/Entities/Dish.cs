@@ -12,6 +12,7 @@ namespace Wjakimszkle.DataAccess.Entities
         [Required]
         [MaxLength(250)]
         public string Name { get; set; }
-        public List<Drink> Drinks { get; set; }
+
+        public List<DrinkType> DrinkTypes { get; set; }
     }
 }
