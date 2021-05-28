@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +19,7 @@ using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.Mappings;
 using Wjakimszkle.ApplicationServices.API.Validators;
 using Wjakimszkle.ApplicationServices.Components.CocktailDb;
+using Wjakimszkle.Authentication;
 using Wjakimszkle.DataAccess;
 
 namespace Wjakimszkle
@@ -34,6 +36,9 @@ namespace Wjakimszkle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
             services.AddMvcCore()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddGlassRequestValidator>());
 
@@ -77,6 +82,7 @@ namespace Wjakimszkle
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
