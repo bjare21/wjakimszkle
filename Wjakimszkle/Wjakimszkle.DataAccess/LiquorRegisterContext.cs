@@ -13,5 +13,7 @@ namespace Wjakimszkle.DataAccess
         public DbSet<DrinkType> DrinkTypes { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Manufacturer> Manufacturers { get; set; }
     }
 }

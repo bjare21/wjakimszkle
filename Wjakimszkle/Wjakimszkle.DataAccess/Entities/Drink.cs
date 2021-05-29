@@ -14,5 +14,7 @@ namespace Wjakimszkle.DataAccess.Entities
         public string Name { get; set; }
         public float AlcoholByVolume { get; set; }
         public DrinkType DrinkType { get; set; }
+
+        public Manufacturer Manufacturer { get; set; }
     }
 }
