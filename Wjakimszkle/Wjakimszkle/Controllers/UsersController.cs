@@ -18,6 +18,14 @@ namespace Wjakimszkle.Controllers
         {
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("Create")]
+        public Task<IActionResult> Create([FromBody] CreateUserRequest request)
+        {
+            return this.HandleRequest<CreateUserRequest, CreateUserResponse>(request);
+        }
+
         [HttpGet]
         [Route("")]
         public Task<IActionResult> GetAll([FromQuery] GetUsersRequest request)

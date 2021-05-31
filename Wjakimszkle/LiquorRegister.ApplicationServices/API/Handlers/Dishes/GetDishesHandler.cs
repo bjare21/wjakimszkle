@@ -10,7 +10,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.Dishes;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.Entities;
 
-namespace Wjakimszkle.ApplicationServices.API.Handlers
+namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
 {
     public class GetDishesHandler:IRequestHandler<GetDishesRequest, GetDishesResponse>
     {

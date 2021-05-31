@@ -12,7 +12,7 @@ using Wjakimszkle.ApplicationServices.API.ErrorHandling;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 
-namespace Wjakimszkle.ApplicationServices.API.Handlers
+namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 {
     public class GetDrinkByIdHandler : IRequestHandler<GetDrinkByIdRequest, GetDrinkByIdResponse>
     {

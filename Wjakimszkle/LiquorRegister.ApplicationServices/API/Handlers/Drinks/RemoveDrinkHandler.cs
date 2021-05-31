@@ -11,7 +11,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Commands;
 
-namespace Wjakimszkle.ApplicationServices.API.Handlers
+namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 {
     public class RemoveDrinkHandler : IRequestHandler<RemoveDrinkRequest, RemoveDrinkResponse>
     {

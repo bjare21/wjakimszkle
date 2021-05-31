@@ -13,7 +13,7 @@ using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
 
-namespace Wjakimszkle.ApplicationServices.API.Handlers
+namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 {
     public class GetDrinksHandler:IRequestHandler<GetDrinksRequest, GetDrinksResponse>
     {

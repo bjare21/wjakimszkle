@@ -11,7 +11,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.Glasses;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Commands;
 
-namespace Wjakimszkle.ApplicationServices.API.Handlers
+namespace Wjakimszkle.ApplicationServices.API.Handlers.Glasses
 {
     public class AddGlassHandler:IRequestHandler<AddGlassRequest, AddGlassResponse>
     {
