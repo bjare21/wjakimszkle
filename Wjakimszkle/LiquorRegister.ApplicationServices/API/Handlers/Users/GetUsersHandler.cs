@@ -25,6 +25,8 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Users
         }
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
+            var username = request.AuthorizationClaim.Username;
+
             var query = new GetUsersQuery();
             var users = await this.queryExecutor.Execute(query);
 

@@ -18,6 +18,13 @@ namespace Wjakimszkle.Controllers
         {
         }
 
+        [HttpGet]
+        [Route("Me")]
+        public Task<IActionResult> Me([FromQuery] GetProfileRequest request)
+        {
+            return this.HandleRequest<GetProfileRequest, GetProfileResponse>(request);
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [Route("Create")]

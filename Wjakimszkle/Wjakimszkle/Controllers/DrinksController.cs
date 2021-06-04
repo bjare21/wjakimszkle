@@ -51,9 +51,7 @@ namespace Wjakimszkle.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllDrinks([FromQuery] GetDrinksRequest request)
         {
-            var response = await this.mediator.Send(request);
-            this.logger.LogInformation($"Request for all Drinks in database, resulted in {response.Data.Count} rows.");
-            return this.Ok(response);
+            return await this.HandleRequest<GetDrinksRequest, GetDrinksResponse>(request);
         }
 
         [HttpGet]

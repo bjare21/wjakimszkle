@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Drinks
 {
-    public class RemoveDrinkRequest:IRequest<RemoveDrinkResponse>
+    public class RemoveDrinkRequest:RequestBase<RemoveDrinkResponse>
     {
         public int Id { get; set; }
     }

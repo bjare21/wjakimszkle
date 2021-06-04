@@ -17,15 +17,19 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
                 .ForMember(u => u.FirstName, x => x.MapFrom(r => r.FirstName))
                 .ForMember(u => u.LastName, x => x.MapFrom(r => r.LastName))
                 .ForMember(u => u.Username, x => x.MapFrom(r => r.Username))
-                .ForMember(u=>u.Email, x=>x.MapFrom(r=>r.Email))
-                .ForMember(u => u.Password, x => x.MapFrom(r => r.Password));
+                .ForMember(u => u.Email, x => x.MapFrom(r => r.Email))
+                .ForMember(u => u.Role, x => x.MapFrom(r => r.Role))
+                .ForMember(u=>u.RegisterDate, x=>x.MapFrom(r=>r.RegisterDate))
+                ;
 
 
             this.CreateMap<User, Domain.Models.User>()
                 .ForMember(d => d.FirstName, e => e.MapFrom(u => u.FirstName))
                 .ForMember(d => d.LastName, e => e.MapFrom(u => u.LastName))
                 .ForMember(d => d.Username, e => e.MapFrom(u => u.Username))
-                .ForMember(d => d.Password, e => e.MapFrom(u => u.Password));
+                .ForMember(d => d.Password, e => e.MapFrom(u => u.Password))
+                .ForMember(d => d.Role, e => e.MapFrom(u => u.Role))
+                .ForMember(d => d.RegisterDate, e => e.MapFrom(u => u.RegisterDate));
         }
     }
 }

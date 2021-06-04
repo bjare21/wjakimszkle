@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.DrinkTypes
 {
-    public class GetDrinkTypeByIdRequest:IRequest<GetDrinkTypeByIdResponse>
+    public class GetDrinkTypeByIdRequest:RequestBase<GetDrinkTypeByIdResponse>
     {
         public int Id { get; set; }
     }

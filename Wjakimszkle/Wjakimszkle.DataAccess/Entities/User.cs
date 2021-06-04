@@ -29,5 +29,19 @@ namespace Wjakimszkle.DataAccess.Entities
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
+        public UserRole Role { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime RegisterDate { get; set; }
+
+    }
+
+    public enum UserRole
+    {
+        User,
+        Editor,
+        Administrator
     }
 }

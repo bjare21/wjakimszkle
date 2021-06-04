@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Dishes
 {
-    public class GetDishesRequest:IRequest<GetDishesResponse>
+    public class GetDishesRequest:RequestBase<GetDishesResponse>
     {
 
     }

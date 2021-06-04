@@ -8,7 +8,7 @@ using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Drinks
 {
-    public class AddDrinkRequest:IRequest<AddDrinkResponse>
+    public class AddDrinkRequest:RequestBase<AddDrinkResponse>
     {
         public int Id { get; set; }
         public int DrinkTypeId { get; set; }

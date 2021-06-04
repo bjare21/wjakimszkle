@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Glasses
 {
-    public class GetGlassesRequest:IRequest<GetGlassesResponse>
+    public class GetGlassesRequest:RequestBase<GetGlassesResponse>
     {
 
     }

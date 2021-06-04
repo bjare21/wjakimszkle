@@ -30,6 +30,8 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
         {
             var cocktails = await this.cocktailDbConnector.Fetch("gin");
 
+            
+
             var query = new GetDrinksQuery()
             {
                 Name = request.Name

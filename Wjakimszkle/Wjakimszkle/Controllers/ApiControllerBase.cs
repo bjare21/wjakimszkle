@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.ErrorHandling;
@@ -20,9 +21,18 @@ namespace Wjakimszkle.Controllers
         }
 
         protected async Task<IActionResult> HandleRequest<TRequest, TResponse>(TRequest request)
-            where TRequest : IRequest<TResponse>
+            where TRequest : RequestBase<TResponse>
             where TResponse : ErrorResponseBase
         {
+            AuthorizationClaim claims = new AuthorizationClaim()
+            {
+                Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier),
+                Username = this.User.FindFirstValue(ClaimTypes.Name),
+                Email = this.User.FindFirstValue(ClaimTypes.Email)
+            };
+
+            request.AuthorizationClaim = claims;
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(

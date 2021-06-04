@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/wjakimszkle/databases/LiquorRegister",
+      "type": "mssql.azure",
+      "connectionId": "LiquorRegisterDatabaseConnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

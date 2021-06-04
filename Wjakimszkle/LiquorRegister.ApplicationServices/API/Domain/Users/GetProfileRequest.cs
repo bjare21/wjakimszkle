@@ -1,5 +1,4 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Users
 {
-    public class GetUsersRequest:RequestBase<GetUsersResponse>
+    public class GetProfileRequest:RequestBase<GetProfileResponse>
     {
-    }
+        public int Id { get; set; }
+}
 }

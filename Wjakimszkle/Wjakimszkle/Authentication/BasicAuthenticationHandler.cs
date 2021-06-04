@@ -13,22 +13,26 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Wjakimszkle.DataAccess;
+using Wjakimszkle.ApplicationServices.API.Security;
 
 namespace Wjakimszkle.Authentication
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly IQueryExecutor queryExecutor;
+        private readonly IPasswordHasher passwordHasher;
 
         public BasicAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
             UrlEncoder encoder,
             ISystemClock clock,
-            IQueryExecutor queryExecutor)
+            IQueryExecutor queryExecutor,
+            IPasswordHasher passwordHasher)
             : base(options, logger, encoder, clock)
         {
             this.queryExecutor = queryExecutor;
+            this.passwordHasher = passwordHasher;
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -60,19 +64,21 @@ namespace Wjakimszkle.Authentication
                 user = await this.queryExecutor.Execute(query);
 
                 // TODO: HASH!
-                if (user == null || user.Password != password)
+                if (user == null || !this.passwordHasher.Verify(user.Password,password))
                 {
                     return AuthenticateResult.Fail("Invalid Authorization Header");
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                var message = ex.Message;
                 return AuthenticateResult.Fail("Invalid Authorization Header");
             }
 
             var claims = new[] {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Email, user.Email)
             };
             var identity = new ClaimsIdentity(claims, Scheme.Name);
             var principal = new ClaimsPrincipal(identity);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Glasses
 {
-    public class RemoveGlassRequest:IRequest<RemoveGlassResponse>
+    public class RemoveGlassRequest:RequestBase<RemoveGlassResponse>
     {
         public int Id { get; set; }
     }
