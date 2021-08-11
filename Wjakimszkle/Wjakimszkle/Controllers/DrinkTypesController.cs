@@ -30,13 +30,20 @@ namespace Wjakimszkle.Controllers
             return await this.HandleRequest<RemoveDrinkTypeRequest, RemoveDrinkTypeResponse>(request);
         }
 
+        [HttpPut]
+        [Route("Edit")]
+        public async Task<IActionResult> Edit([FromBody] EditDrinkTypeRequest request)
+        {
+            return await this.HandleRequest<EditDrinkTypeRequest, EditDrinkTypeResponse>(request);
+        }
+
         [HttpGet]
-        [Route("{drinkTypeId}")]
-        public async Task<IActionResult> GetDrinkTypeById([FromRoute]int drinkTypeId)
+        [Route("Get/{id}")]
+        public async Task<IActionResult> GetDrinkTypeById([FromRoute]int id)
         {
             var request = new GetDrinkTypeByIdRequest()
             {
-                Id = drinkTypeId
+                Id = id
             };
             return await this.HandleRequest<GetDrinkTypeByIdRequest, GetDrinkTypeByIdResponse>(request);
         }

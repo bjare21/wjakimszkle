@@ -18,18 +18,17 @@ namespace Wjakimszkle.Controllers
         }
 
         [HttpDelete]
-        [Route("Remove")]
-        public async Task<IActionResult> RemoveGlass([FromQuery] RemoveGlassRequest request)
+        [Route("Remove/{Id}")]
+        public async Task<IActionResult> RemoveGlass([FromRoute] RemoveGlassRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<RemoveGlassRequest, RemoveGlassResponse>(request);
         }
 
         [HttpPost]
         [Route("Add")]
-        public Task<IActionResult> AddGlass([FromBody] AddGlassRequest request)
+        public async Task<IActionResult> AddGlass([FromBody] AddGlassRequest request)
         {
-            return this.HandleRequest<AddGlassRequest, AddGlassResponse>(request);
+            return await this.HandleRequest<AddGlassRequest, AddGlassResponse>(request);
             
             //if (!this.ModelState.IsValid)
             //{
@@ -41,18 +40,29 @@ namespace Wjakimszkle.Controllers
 
         [HttpPut]
         [Route("Edit")]
-        public async Task<IActionResult> EditGlass([FromQuery] EditGlassRequest request)
+        public async Task<IActionResult> EditGlass([FromBody] EditGlassRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<EditGlassRequest, EditGlassResponse>(request);
         }
+
+        [HttpGet]
+        [Route("Get/{id}")]
+        public async Task<IActionResult> GetGlassById([FromRoute] int id)
+        {
+            GetGlassByIdRequest request = new GetGlassByIdRequest()
+            {
+                Id = id
+            };
+
+            return await this.HandleRequest<GetGlassByIdRequest, GetGlassByIdResponse>(request);
+        }
+
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllGlasses([FromQuery] GetGlassesRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<GetGlassesRequest, GetGlassesResponse>(request);
         }
 
         

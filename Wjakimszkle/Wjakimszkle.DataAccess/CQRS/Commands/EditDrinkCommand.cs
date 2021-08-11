@@ -7,16 +7,14 @@ using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.DataAccess.CQRS.Commands
 {
-    public class EditDrinkCommand:CommandBase<Drink, Drink>
+    public class EditDrinkCommand : CommandBase<Drink, Drink>
     {
         public override async Task<Drink> Execute(LiquorRegisterContext context)
         {
             var drinkToEdit = context.Drinks.FirstOrDefault(x => x.Id == this.Parameter.Id);
-            if (drinkToEdit != null)
-            {
-                drinkToEdit.Name = this.Parameter.Name;
-                await context.SaveChangesAsync();
-            }
+            if (drinkToEdit == null) return null;
+            context.Entry(drinkToEdit).CurrentValues.SetValues(this.Parameter);
+            await context.SaveChangesAsync();
             return drinkToEdit;
         }
     }

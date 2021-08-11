@@ -16,5 +16,11 @@ namespace Wjakimszkle.DataAccess.Entities
         public DrinkType DrinkType { get; set; }
 
         public Manufacturer Manufacturer { get; set; }
+
+        [DataType(DataType.ImageUrl)]
+        public string ImageUrl { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
     }
 }

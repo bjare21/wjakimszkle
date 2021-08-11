@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wjakimszkle.DataAccess;
 
 namespace Wjakimszkle.DataAccess.Migrations
 {
     [DbContext(typeof(LiquorRegisterContext))]
-    partial class LiquorRegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20210720212107_DrinksImageUrl")]
+    partial class DrinksImageUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +77,6 @@ namespace Wjakimszkle.DataAccess.Migrations
 
                     b.Property<float>("AlcoholByVolume")
                         .HasColumnType("real");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("DrinkTypeId")
                         .HasColumnType("int");

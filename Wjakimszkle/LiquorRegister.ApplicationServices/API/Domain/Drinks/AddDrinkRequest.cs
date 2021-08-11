@@ -14,5 +14,8 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.Drinks
         public int DrinkTypeId { get; set; }
         public string Name { get; set; }
         public float AlcoholByVolume { get; set; }
+        public string ImageUrl { get; set; }
+
+        public string Description { get; set; }
     }
 }

@@ -31,4 +31,8 @@
     <ProjectReference Include="..\Wjakimszkle.DataAccess\Wjakimszkle.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StaticFiles\Images\" />
+  </ItemGroup>
+
 </Project>

@@ -5,14 +5,15 @@ namespace Wjakimszkle.ApplicationServices.Components.CocktailDb
 {
     public class Cocktail
     {
-        [JsonProperty("Ingredients")]
-       public List<Ingredients> Ingredients { get; set; }
+        [JsonProperty("Drinks")]
+       public List<Drink> Drinks { get; set; }
     }
 
-    public class Ingredients
+    public class Drink
     {
-        public string idIngredient { get; set; }
-        [JsonProperty("strIngredient")]
+        [JsonProperty("idDrink")]
+        public string Id { get; set; }
+        [JsonProperty("strDrink")]
         public string Name { get; set; }
     }
 }

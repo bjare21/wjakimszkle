@@ -33,10 +33,12 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 
             var removedDrink = await this.commandExecutor.Execute(command);
 
-            return new RemoveDrinkResponse()
+            var response = new RemoveDrinkResponse()
             {
                 Data = this.mapper.Map<Domain.Models.Drink>(removedDrink)
             };
-    }
+
+            return response;
+        }
     }
 }

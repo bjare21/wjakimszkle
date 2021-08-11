@@ -8,13 +8,12 @@ using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.DataAccess.CQRS.Queries
 {
-    public class GetDrinkQuery:QueryBase<Drink>
+    public class GetGlassByIdQuery : QueryBase<Glass>
     {
         public int Id { get; set; }
-        public override async Task<Drink> Execute(LiquorRegisterContext context)
+        public override async Task<Glass> Execute(LiquorRegisterContext context)
         {
-            var drink = await context.Drinks.Include(d=>d.DrinkType).FirstOrDefaultAsync(x=>x.Id == this.Id);
-            return drink;
+            return await context.Glasses.SingleOrDefaultAsync(g => g.Id == Id);
         }
     }
 }

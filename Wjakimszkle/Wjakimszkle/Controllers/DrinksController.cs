@@ -33,18 +33,16 @@ namespace Wjakimszkle.Controllers
 
         [HttpPut]
         [Route("Edit")]
-        public async Task<IActionResult> Edit([FromQuery] EditDrinkRequest request)
+        public async Task<IActionResult> Edit([FromBody] EditDrinkRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<EditDrinkRequest, EditDrinkResponse>(request);
         }
 
         [HttpDelete]
-        [Route("Remove")]
-        public async Task<IActionResult> Remove([FromQuery] RemoveDrinkRequest request)
+        [Route("Remove/{Id}")]
+        public async Task<IActionResult> Remove([FromRoute] RemoveDrinkRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<RemoveDrinkRequest, RemoveDrinkResponse>(request);
         }
 
         [HttpGet]
@@ -55,14 +53,38 @@ namespace Wjakimszkle.Controllers
         }
 
         [HttpGet]
-        [Route("{drinkId}")]
-        public Task<IActionResult> GetDrinkById([FromRoute] int drinkId)
+        [Route("Get/{id}")]
+        public Task<IActionResult> GetDrinkById([FromRoute] int id)
         {
             var request = new GetDrinkByIdRequest()
             {
-                DrinkId = drinkId
+                DrinkId = id
             };
             return this.HandleRequest<GetDrinkByIdRequest, GetDrinkByIdResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("Glass/{glassId}")]
+        public async Task<IActionResult> GetDrinksByGlassId([FromRoute] int glassId)
+        {
+            var request = new GetDrinksByGlassIdRequest()
+            {
+                GlassId = glassId
+            };
+
+            return await this.HandleRequest<GetDrinksByGlassIdRequest, GetDrinksByGlassIdResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("GlassName/{glassName}")]
+        public async Task<IActionResult> GetCocktailsByGlassName([FromRoute] string glassName)
+        {
+            var request = new GetCocktailsByGlassNameRequest()
+            {
+                Name = glassName
+            };
+
+            return await this.HandleRequest<GetCocktailsByGlassNameRequest, GetCocktailsByGlassNameResponse>(request);
         }
 
         //[HttpGet]

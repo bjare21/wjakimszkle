@@ -39,5 +39,13 @@ namespace Wjakimszkle.Controllers
         {
             return this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("authenticate")]
+        public async Task<IActionResult> Post([FromBody] ValidateUserRequest request)
+        {
+            return await this.HandleRequest<ValidateUserRequest, ValidateUserResponse>(request);
+        }
     }
 }

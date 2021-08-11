@@ -28,7 +28,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
         }
         public async Task<GetDrinksResponse> Handle(GetDrinksRequest request, CancellationToken cancellationToken)
         {
-            var cocktails = await this.cocktailDbConnector.Fetch("gin");
+            var cocktails = await this.cocktailDbConnector.Fetch("Cocktail_glass");
 
             
 

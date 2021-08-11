@@ -12,21 +12,17 @@ namespace Wjakimszkle.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DishesController : ControllerBase
+    public class DishesController : ApiControllerBase
     {
-        private readonly IMediator mediator;
-
-        public DishesController(IMediator mediator)
+        public DishesController(IMediator mediator):base(mediator)
         {
-            this.mediator = mediator;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllDishes([FromQuery] GetDishesRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            return await this.HandleRequest<GetDishesRequest, GetDishesResponse>(request);
         }
     }
 }
