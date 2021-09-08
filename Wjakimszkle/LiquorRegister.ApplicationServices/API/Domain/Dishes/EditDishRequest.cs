@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wjakimszkle.DataAccess.Entities;
 
-namespace Wjakimszkle.ApplicationServices.API.Domain.Models
+namespace Wjakimszkle.ApplicationServices.API.Domain.Dishes
 {
-    public class DrinkType
+    public class EditDishRequest:RequestBase<EditDishResponse>
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Genre Genre { get; set; }
     }
 }

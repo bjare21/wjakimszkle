@@ -13,6 +13,7 @@ namespace Wjakimszkle.DataAccess.Entities
         [MaxLength(250)]
         public string Name { get; set; }
         public float AlcoholByVolume { get; set; }
+
         public DrinkType DrinkType { get; set; }
 
         public Manufacturer Manufacturer { get; set; }
@@ -23,4 +24,6 @@ namespace Wjakimszkle.DataAccess.Entities
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
+
+    
 }

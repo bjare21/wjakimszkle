@@ -21,7 +21,9 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
 
             this.CreateMap<EditDrinkRequest, DataAccess.Entities.Drink>()
                 .ForMember(a => a.Name, b => b.MapFrom(c => c.Name))
-                .ForMember(a => a.AlcoholByVolume, b => b.MapFrom(c => c.AlcoholByVolume));
+                .ForMember(a => a.AlcoholByVolume, b => b.MapFrom(c => c.AlcoholByVolume))
+                .ForMember(a => a.Description, b => b.MapFrom(c => c.Description))
+                .ForMember(a => a.ImageUrl, b => b.MapFrom(c => c.ImageUrl));
             //.ForMember(a => a.DrinkType, b => b.MapFrom(b=>new DrinkType() { Id =  b.DrinkTypeId }));  WYSZŁY PROBLEMY PRZY EDYCJI Z BLAZORA
 
             this.CreateMap<DataAccess.Entities.Drink, Drink>()
