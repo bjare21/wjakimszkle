@@ -14,24 +14,24 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
         public DishesProfile()
         {
             this.CreateMap<AddDishRequest, DataAccess.Entities.Dish>()
-                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name));
+                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name))
+                .ForMember(a => a.Description, b => b.MapFrom(c => c.Description))
+                .ForMember(a => a.ImageUrl, b => b.MapFrom(c => c.ImageUrl));
 
             this.CreateMap<DataAccess.Entities.Dish, Dish>()
-                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name));
+                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name))
+                .ForMember(a => a.Description, b => b.MapFrom(c => c.Description))
+                .ForMember(a => a.ImageUrl, b => b.MapFrom(c => c.ImageUrl));
 
             this.CreateMap<RemoveDishRequest, DataAccess.Entities.Dish>()
                 .ForMember(a => a.Id, b => b.MapFrom(c => c.Id));
 
-            this.CreateMap<DataAccess.Entities.Dish, Dish>()
-                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name));
-
             this.CreateMap<EditDishRequest, DataAccess.Entities.Dish>()
                 .ForMember(a => a.Id, b => b.MapFrom(c => c.Id))
-                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name));
+                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name))
+                .ForMember(a => a.Description, b => b.MapFrom(c => c.Description))
+                .ForMember(a => a.ImageUrl, b => b.MapFrom(c => c.ImageUrl));
 
-            this.CreateMap<Dish, Domain.Models.Dish>()
-                .ForMember(a => a.Id, b => b.MapFrom(c => c.Id))
-                .ForMember(a => a.Name, b => b.MapFrom(c => c.Name));
         }
 
     }

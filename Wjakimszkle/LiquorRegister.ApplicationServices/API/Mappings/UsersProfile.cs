@@ -28,7 +28,7 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
                 .ForMember(d => d.LastName, e => e.MapFrom(u => u.LastName))
                 .ForMember(d => d.Username, e => e.MapFrom(u => u.Username))
                 .ForMember(d => d.Password, e => e.MapFrom(u => u.Password))
-                .ForMember(d => d.Role, e => e.MapFrom(u => u.Role))
+                .ForMember(d => d.Role, e => e.MapFrom(u => Enum.GetName(u.Role)))
                 .ForMember(d => d.RegisterDate, e => e.MapFrom(u => u.RegisterDate));
         }
     }

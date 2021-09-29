@@ -11,8 +11,8 @@ namespace Wjakimszkle.DataAccess.CQRS.Commands
     {
         public async override Task<User> Execute(LiquorRegisterContext context)
         {
-            await context.Users.AddAsync(this.Parameter);
-            await context.SaveChangesAsync();
+            //await context.Users.AddAsync(this.Parameter);
+            //await context.SaveChangesAsync();
             return this.Parameter;
         }
     }

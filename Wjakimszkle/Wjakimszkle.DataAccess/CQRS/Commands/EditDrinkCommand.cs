@@ -14,7 +14,11 @@ namespace Wjakimszkle.DataAccess.CQRS.Commands
         {
             var drinkToEdit = context.Drinks.FirstOrDefault(x => x.Id == this.Parameter.Id);
             if (drinkToEdit == null) return null;
-            
+
+            if (DrinkType != null)
+            {
+                drinkToEdit.DrinkType = DrinkType;
+            }
             context.Entry(drinkToEdit).CurrentValues.SetValues(this.Parameter);
             await context.SaveChangesAsync();
             return drinkToEdit;

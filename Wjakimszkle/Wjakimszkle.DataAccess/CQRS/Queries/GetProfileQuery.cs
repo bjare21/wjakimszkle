@@ -13,7 +13,8 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
         public int Id { get; set; }
         public override async Task<User> Execute(LiquorRegisterContext context)
         {
-            return await context.Users.FirstOrDefaultAsync(u => u.Id == this.Id);
+            //return await context.Users.FirstOrDefaultAsync(u => u.Id == this.Id);
+            return null;
         }
     }
 }

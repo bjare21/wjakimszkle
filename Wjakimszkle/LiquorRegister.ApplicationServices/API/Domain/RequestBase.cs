@@ -12,6 +12,6 @@ namespace Wjakimszkle.ApplicationServices.API.Domain
 {
     public class RequestBase<T>:IRequest<T>
     {
-        public AuthorizationClaim AuthorizationClaim { get; set; } = new AuthorizationClaim();
+        //public AuthorizationClaim AuthorizationClaim { get; set; } = new AuthorizationClaim();
     }
 }

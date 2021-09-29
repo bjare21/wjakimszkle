@@ -36,7 +36,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
 
             return new AddDishResponse()
             {
-                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Dish>(response)
+                Data = this.mapper.Map<Domain.Models.Dish>(response)
             };
         }
     }

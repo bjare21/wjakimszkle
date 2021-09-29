@@ -20,7 +20,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
         private readonly IMapper mapper;
         private readonly ICommandExecutor commandExecutor;
         private readonly IQueryExecutor queryExecutor;
-        public EditDrinkHandler(IMapper mapper, ICommandExecutor commandExecutor)
+        public EditDrinkHandler(IMapper mapper, ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
         {
             this.mapper = mapper;
             this.commandExecutor = commandExecutor;
@@ -34,14 +34,12 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
                 Id = request.DrinkTypeId
             };
 
-            var dtResponse = this.queryExecutor.Execute(drinkTypeQuery);
-
-            //TUTAJ SIĘ ZATRZYMAŁEM
+            var dtResponse = await this.queryExecutor.Execute(drinkTypeQuery);
 
             var command = new EditDrinkCommand()
             {
                 Parameter = this.mapper.Map<Drink>(request),
-                DrinkType = this.mapper.Map<DrinkType>(dtResponse)
+                DrinkType = dtResponse
             };
 
             var response = await this.commandExecutor.Execute(command);

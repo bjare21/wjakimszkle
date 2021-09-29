@@ -13,38 +13,38 @@ using Wjakimszkle.DataAccess.CQRS.Queries;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Users
 {
-    public class GetProfileHandler:IRequestHandler<GetProfileRequest, GetProfileResponse>
-    {
-        private readonly IMapper mapper;
-        private readonly IQueryExecutor queryExecutor;
+    //public class GetProfileHandler:IRequestHandler<GetProfileRequest, GetProfileResponse>
+    //{
+    //    private readonly IMapper mapper;
+    //    private readonly IQueryExecutor queryExecutor;
 
-        public GetProfileHandler(IMapper mapper, IQueryExecutor queryExecutor)
-        {
-            this.mapper = mapper;
-            this.queryExecutor = queryExecutor;
-        }
+    //    public GetProfileHandler(IMapper mapper, IQueryExecutor queryExecutor)
+    //    {
+    //        this.mapper = mapper;
+    //        this.queryExecutor = queryExecutor;
+    //    }
 
-        public async Task<GetProfileResponse> Handle(GetProfileRequest request, CancellationToken cancellationToken)
-        {
-            int userId = int.Parse(request.AuthorizationClaim.Id);
+    //    public async Task<GetProfileResponse> Handle(GetProfileRequest request, CancellationToken cancellationToken)
+    //    {
+    //        int userId = int.Parse(request.AuthorizationClaim.Id);
 
-            if (userId == null)
-            {
-                //brak zalogowania? możliwy?
-            }
-            var query = new GetProfileQuery()
-            {
-                Id = userId
-            };
+    //        if (userId == null)
+    //        {
+    //            //brak zalogowania? możliwy?
+    //        }
+    //        var query = new GetProfileQuery()
+    //        {
+    //            Id = userId
+    //        };
 
-            var user = await this.queryExecutor.Execute(query);
+    //        var user = await this.queryExecutor.Execute(query);
 
-            var response = new GetProfileResponse()
-            {
-                Data = this.mapper.Map<User>(user)
-            };
+    //        var response = new GetProfileResponse()
+    //        {
+    //            Data = this.mapper.Map<User>(user)
+    //        };
 
-            return response;
-        }
-    }
+    //        return response;
+    //    }
+    //}
 }

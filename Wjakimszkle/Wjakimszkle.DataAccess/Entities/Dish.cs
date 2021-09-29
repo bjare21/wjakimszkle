@@ -13,6 +13,11 @@ namespace Wjakimszkle.DataAccess.Entities
         [MaxLength(250)]
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
+        [DataType(DataType.ImageUrl)]
+        public string ImageUrl { get; set; }
+
         public List<DrinkType> DrinkTypes { get; set; }
     }
 }

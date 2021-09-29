@@ -13,7 +13,8 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
         public string Username { get; set; }
         public override Task<User> Execute(LiquorRegisterContext context)
         {
-            return context.Users.FirstOrDefaultAsync(u => u.Username == this.Username);
+            //return context.Users.FirstOrDefaultAsync(u => u.Username == this.Username);
+            return null;
         }
     }
 }

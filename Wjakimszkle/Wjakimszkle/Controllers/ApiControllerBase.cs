@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -24,14 +25,14 @@ namespace Wjakimszkle.Controllers
             where TRequest : RequestBase<TResponse>
             where TResponse : ErrorResponseBase
         {
-            AuthorizationClaim claims = new AuthorizationClaim()
-            {
-                Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier),
-                Username = this.User.FindFirstValue(ClaimTypes.Name),
-                Email = this.User.FindFirstValue(ClaimTypes.Email)
-            };
+            //AuthorizationClaim claims = new AuthorizationClaim()
+            //{
+            //    Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier),
+            //    Username = this.User.FindFirstValue(ClaimTypes.Name),
+            //    Email = this.User.FindFirstValue(ClaimTypes.Email)
+            //};
 
-            request.AuthorizationClaim = claims;
+            //request.AuthorizationClaim = claims;
 
             if (!this.ModelState.IsValid)
             {
@@ -40,14 +41,23 @@ namespace Wjakimszkle.Controllers
                     .Where(x => x.Value.Errors.Any())
                     .Select(x => new { property = x.Key, errors = x.Value.Errors }));
             }
-
-            var response = await this.mediator.Send(request);
-            if (response.Error != null)
+            try
             {
-                return this.ErrorResponse(response.Error);
+                var response = await this.mediator.Send(request);
+                if (response.Error != null)
+                {
+                    return this.ErrorResponse(response.Error);
+                }
+
+                return this.Ok(response);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
 
-            return this.Ok(response);
+            return this.BadRequest();
+            
         }
 
         private IActionResult ErrorResponse(ErrorModel errorModel)

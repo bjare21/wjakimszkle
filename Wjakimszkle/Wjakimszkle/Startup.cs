@@ -1,10 +1,12 @@
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,11 +14,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.Mappings;
@@ -52,8 +56,31 @@ namespace Wjakimszkle
                     });
             });
 
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            services.AddMediatR(typeof(RequestBase<>));
+
+            services.AddDbContext<LiquorRegisterContext>(
+                opt => opt.UseSqlServer(this.Configuration.GetConnectionString("LiquorRegisterDatabaseConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<LiquorRegisterContext>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["JwtIssuer"],
+                        ValidAudience = Configuration["JwtAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityKey"]))
+                    };
+                });
+
+            //services.AddAuthentication("BasicAuthentication")
+            //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             services.AddMvcCore()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddGlassRequestValidator>());
@@ -72,12 +99,13 @@ namespace Wjakimszkle
 
             services.AddAutoMapper(typeof(DrinksProfile).Assembly);
 
-            services.AddMediatR(typeof(ResponseBase<>));
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+           
 
-            services.AddDbContext<LiquorRegisterContext>(
-                opt => opt.UseSqlServer(this.Configuration.GetConnectionString("LiquorRegisterDatabaseConnection")));
+            
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
