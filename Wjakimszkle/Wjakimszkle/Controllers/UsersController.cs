@@ -8,16 +8,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain.Users;
 using Wjakimszkle.ApplicationServices.API.Domain.Users.Models;
+using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ApiControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        public UsersController(IMediator mediator, UserManager<IdentityUser> userManager) : base(mediator)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public UsersController(IMediator mediator, UserManager<ApplicationUser> userManager) : base(mediator)
         {
             this._userManager = userManager;
         }
@@ -39,7 +39,7 @@ namespace Wjakimszkle.Controllers
 
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetAll([FromQuery] GetUsersRequest request)
+        public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
         {
             return this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
@@ -57,14 +57,17 @@ namespace Wjakimszkle.Controllers
         [Route("")]
         public async Task<IActionResult> Post([FromBody] RegisterModel model)
         {
-            var newUser = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var newUser = new ApplicationUser { UserName = model.Email, Email = model.Email };
             var result = await _userManager.CreateAsync(newUser, model.Password);
 
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(x => x.Description);
-                return Ok(new RegisterResult { Successful = false, Errors = errors });
+                return BadRequest(new RegisterResult { Successful = false, Errors = errors });
             }
+
+            await _userManager.AddToRoleAsync(newUser, "User");
+
             return Ok(new RegisterResult { Successful = true });
         }
     }

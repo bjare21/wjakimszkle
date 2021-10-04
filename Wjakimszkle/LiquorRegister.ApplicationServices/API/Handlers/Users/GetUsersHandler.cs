@@ -13,31 +13,33 @@ using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Users
 {
-    //public class GetUsersHandler : IRequestHandler<GetUsersRequest, GetUsersResponse>
-    //{
-    //    private readonly IMapper mapper;
-    //    private readonly IQueryExecutor queryExecutor;
+    public class GetUsersHandler : IRequestHandler<GetUsersRequest, GetUsersResponse>
+    {
+        private readonly IMapper mapper;
+        private readonly IQueryExecutor queryExecutor;
 
-    //    public GetUsersHandler(IMapper mapper, IQueryExecutor queryExecutor)
-    //    {
-    //        this.mapper = mapper;
-    //        this.queryExecutor = queryExecutor;
-    //    }
-    //    public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
-    //    {
-    //        var username = request.AuthorizationClaim.Username;
+        public GetUsersHandler(IMapper mapper, IQueryExecutor queryExecutor)
+        {
+            this.mapper = mapper;
+            this.queryExecutor = queryExecutor;
+        }
+        public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
+        {
+            //var username = request.AuthorizationClaim.Username;
 
-    //        var query = new GetUsersQuery();
-    //        var users = await this.queryExecutor.Execute(query);
+            var query = new GetUsersQuery();
+            var users = await this.queryExecutor.Execute(query);
 
-    //        var response = new GetUsersResponse()
-    //        {
-    //            Data = this.mapper.Map<List<Domain.Models.User>>(users)
-    //        };
+            var domainUsers = this.mapper.Map<List<Domain.Models.User>>(users);
 
-    //        return response;
-    //    }
+            var response = new GetUsersResponse()
+            {
+                Data = domainUsers
+            };
 
-        
-    //}
+            return response;
+        }
+
+
+    }
 }

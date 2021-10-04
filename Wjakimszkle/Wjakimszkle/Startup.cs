@@ -29,6 +29,7 @@ using Wjakimszkle.ApplicationServices.API.Validators;
 using Wjakimszkle.ApplicationServices.Components.CocktailDb;
 using Wjakimszkle.Authentication;
 using Wjakimszkle.DataAccess;
+using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle
 {
@@ -61,7 +62,8 @@ namespace Wjakimszkle
             services.AddDbContext<LiquorRegisterContext>(
                 opt => opt.UseSqlServer(this.Configuration.GetConnectionString("LiquorRegisterDatabaseConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<LiquorRegisterContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

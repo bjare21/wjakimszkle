@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wjakimszkle.DataAccess;
 
 namespace Wjakimszkle.DataAccess.Migrations
 {
     [DbContext(typeof(LiquorRegisterContext))]
-    partial class LiquorRegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20211001115306_SeedRoles")]
+    partial class SeedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,22 +80,22 @@ namespace Wjakimszkle.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4683ba8d-7685-4e37-bcfb-96ff9c21cbb4",
-                            ConcurrencyStamp = "492f5f7d-089e-4823-bf16-879dcf550ab6",
+                            Id = "db17b499-bc23-4113-9be1-83c42172c220",
+                            ConcurrencyStamp = "3e5ca86d-cecb-409f-9f74-64e2542c2d32",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "528839bf-dabe-4b02-bc40-0b15f102d62c",
-                            ConcurrencyStamp = "a3a5bbda-d1f7-445f-a774-c491bf15b7dd",
+                            Id = "6ad740a0-7337-4a63-a136-36d63a65a005",
+                            ConcurrencyStamp = "7de168f1-cef2-4770-9131-34be8db4a8fc",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "fab07dfb-87ef-4b93-bd7f-9be89c80f8cf",
-                            ConcurrencyStamp = "0bc72f97-b4ed-4674-9b43-1a601fe75731",
+                            Id = "58264be0-5c39-4edb-91cb-95f6fb24a492",
+                            ConcurrencyStamp = "069144ca-3f6b-4c60-a05e-1d66f7944c0a",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -133,10 +135,6 @@ namespace Wjakimszkle.DataAccess.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -190,8 +188,6 @@ namespace Wjakimszkle.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -381,24 +377,6 @@ namespace Wjakimszkle.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Manufacturers");
-                });
-
-            modelBuilder.Entity("Wjakimszkle.DataAccess.Entities.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("RegisterDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("DishDrinkType", b =>
