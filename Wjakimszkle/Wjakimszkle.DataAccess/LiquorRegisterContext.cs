@@ -19,33 +19,58 @@ namespace Wjakimszkle.DataAccess
 
         public new DbSet<ApplicationUser> Users { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Name = "Admin",
-                NormalizedName = "ADMIN",
-                Id = Guid.NewGuid().ToString(),
-                ConcurrencyStamp = Guid.NewGuid().ToString()
-            });
+            //builder.Entity<ApplicationUser>(b =>
+            //{
+            //    b.HasMany(e => e.UserRoles)
+            //    .WithOne(e => e.User)
+            //    .HasForeignKey(ur => ur.UserId)
+            //    .IsRequired();
 
-            builder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Name = "Editor",
-                NormalizedName = "EDITOR",
-                Id = Guid.NewGuid().ToString(),
-                ConcurrencyStamp = Guid.NewGuid().ToString()
-            });
+            //    //b.ToTable("AspNetUsers");
+            //});
 
-            builder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Name = "User",
-                NormalizedName = "USER",
-                Id = Guid.NewGuid().ToString(),
-                ConcurrencyStamp = Guid.NewGuid().ToString()
-            });
+            //builder.Entity<ApplicationRole>(b =>
+            //{
+            //    b.HasMany(e => e.UserRoles)
+            //    .WithOne(e => e.Role)
+            //    .HasForeignKey(ur => ur.RoleId)
+            //    .IsRequired();
+            //});
+
+            //builder.Entity<ApplicationUserRole>(b =>
+            //{
+            //    b.HasKey(r => new { r.UserId, r.RoleId });
+            //});
+
+            //builder.Entity<IdentityRole>().HasData(new IdentityRole
+            //{
+            //    Name = "Admin",
+            //    NormalizedName = "ADMIN",
+            //    Id = Guid.NewGuid().ToString(),
+            //    ConcurrencyStamp = Guid.NewGuid().ToString()
+            //});
+
+            //builder.Entity<IdentityRole>().HasData(new IdentityRole
+            //{
+            //    Name = "Editor",
+            //    NormalizedName = "EDITOR",
+            //    Id = Guid.NewGuid().ToString(),
+            //    ConcurrencyStamp = Guid.NewGuid().ToString()
+            //});
+
+            //builder.Entity<IdentityRole>().HasData(new IdentityRole
+            //{
+            //    Name = "User",
+            //    NormalizedName = "USER",
+            //    Id = Guid.NewGuid().ToString(),
+            //    ConcurrencyStamp = Guid.NewGuid().ToString()
+            //});
+
         }
     }
 }

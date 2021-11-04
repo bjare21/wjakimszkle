@@ -37,11 +37,61 @@ namespace Wjakimszkle.Controllers
             return this.HandleRequest<CreateUserRequest, CreateUserResponse>(request);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         [Route("")]
         public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
         {
             return this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("Get/{Id}")]
+        public Task<IActionResult> Get([FromRoute] GetUserRequest request)
+        {
+            return this.HandleRequest<GetUserRequest, GetUserResponse>(request);
+        }
+
+
+        [HttpGet]
+        [Route("GetUserRole/{Id}")]
+        public Task<IActionResult> GetUserRole([FromRoute] GetUserRoleRequest request)
+        {
+            return this.HandleRequest<GetUserRoleRequest, GetUserRoleResponse>(request); 
+        }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Route("GetRoles")]
+        public Task<IActionResult> GetRoles([FromQuery] GetRolesRequest request)
+        {
+            return this.HandleRequest<GetRolesRequest, GetRolesResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("UsersWithRole")]
+        public Task<IActionResult> GetUsersWithRole([FromQuery] GetUsersWithRoleRequest request)
+        {
+            return this.HandleRequest<GetUsersWithRoleRequest, GetUsersWithRoleResponse>(request);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("SetUserRoles")]
+        public async Task<IActionResult> SetUsersRole([FromBody] SetUserRolesRequest request)
+        {
+            var context = this.HttpContext;
+            var authHeader = context.Request.Headers["Authorization"];
+            var user = context.User;
+            return await this.HandleRequest<SetUserRolesRequest, SetUserRolesResponse>(request);
+        }
+
+
+        [HttpPost]
+        [Route("SetUserRole")]
+        public Task<IActionResult> SetUserRole([FromQuery] SetUserRoleRequest request)
+        {
+            return this.HandleRequest<SetUserRoleRequest, SetUserRoleResponse>(request);
         }
 
         [AllowAnonymous]

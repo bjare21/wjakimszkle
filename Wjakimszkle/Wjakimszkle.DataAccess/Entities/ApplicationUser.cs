@@ -18,5 +18,9 @@ namespace Wjakimszkle.DataAccess.Entities
         public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime RegisterDate { get; set; }
+
+        //public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
+
+
     }
 }

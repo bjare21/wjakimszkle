@@ -15,6 +15,7 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
         public UsersProfile()
         {
             this.CreateMap<ApplicationUser, Domain.Models.User>()
+                .ForMember(u=>u.Id, x=>x.MapFrom(r=>r.Id))
                 .ForMember(u => u.Username, x => x.MapFrom(r => r.UserName))
                 .ForMember(u => u.Email, x => x.MapFrom(r => r.Email))
                 .ForMember(u => u.FirstName, x => x.MapFrom(r => r.FirstName))

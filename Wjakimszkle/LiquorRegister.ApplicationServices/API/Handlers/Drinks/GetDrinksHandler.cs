@@ -12,6 +12,7 @@ using Wjakimszkle.ApplicationServices.Components.CocktailDb;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
+using Wjakimszkle.DataAccess.Paging;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 {
@@ -34,21 +35,30 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 
             var query = new GetDrinksQuery()
             {
-                Name = request.Name
+                Name = request.Name,
+                ItemParameters = request.ItemParameters
             };
 
             var drinks = await this.queryExecutor.Execute(query);
             var mappedDrink = this.mapper.Map<List<Domain.Models.Drink>>(drinks);
-            
+
             //var domainDrinks = drinks.Select(d => new Domain.Models.Drink()
             //{
             //    Id = d.Id,
             //    Name = d.Name
             //});
 
+            PagedList<Domain.Models.Drink> list =
+                PagedList<Domain.Models.Drink>
+                .ToPagedList(
+                    mappedDrink, 
+                request.ItemParameters.PageNumber,
+                request.ItemParameters.PageSize
+                );
+
             var response = new GetDrinksResponse()
             {
-                Data = mappedDrink
+                Data = list
             };
 
             return response;

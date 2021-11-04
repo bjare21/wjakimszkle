@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,16 @@ namespace Wjakimszkle.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllDishes([FromQuery] GetDishesRequest request)
         {
-            return await this.HandleRequest<GetDishesRequest, GetDishesResponse>(request);
+            var user = this.HttpContext.User;
+            var result = await this.HandleRequest<GetDishesRequest, GetDishesResponse>(request);
+
+            if (result is OkObjectResult)
+            {
+                var okResult = (OkObjectResult)result;
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(((GetDishesResponse)okResult.Value).Data.MetaData));
+            }
+
+            return result;
         }
     }
 }

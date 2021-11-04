@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wjakimszkle.DataAccess\Wjakimszkle.DataAccess.csproj" />
+    <ProjectReference Include="..\Wjakimszkle.Shared\Wjakimszkle.Shared.csproj" />
   </ItemGroup>
 
 </Project>

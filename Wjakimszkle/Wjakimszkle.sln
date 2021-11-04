@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjakimszkle.ApplicationServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp", "..\..\WJSBlazorApp\WJSBlazorApp\BlazorApp.csproj", "{AE2DC59E-1FF0-460A-B5E2-51B38E7931FF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JBlazorLibrary", "..\..\..\Users\Hp\source\repos\JBlazorApp\JBlazorLibrary\JBlazorLibrary.csproj", "{091B4DB6-D13D-4D93-972F-014D64839718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjakimszkle.Shared", "Wjakimszkle.Shared\Wjakimszkle.Shared.csproj", "{D178290A-1F60-471E-8A35-B5D6647CD177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{AE2DC59E-1FF0-460A-B5E2-51B38E7931FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2DC59E-1FF0-460A-B5E2-51B38E7931FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2DC59E-1FF0-460A-B5E2-51B38E7931FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091B4DB6-D13D-4D93-972F-014D64839718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091B4DB6-D13D-4D93-972F-014D64839718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091B4DB6-D13D-4D93-972F-014D64839718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091B4DB6-D13D-4D93-972F-014D64839718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D178290A-1F60-471E-8A35-B5D6647CD177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D178290A-1F60-471E-8A35-B5D6647CD177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D178290A-1F60-471E-8A35-B5D6647CD177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D178290A-1F60-471E-8A35-B5D6647CD177}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

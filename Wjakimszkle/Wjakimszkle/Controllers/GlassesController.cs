@@ -62,6 +62,7 @@ namespace Wjakimszkle.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllGlasses([FromQuery] GetGlassesRequest request)
         {
+            var user = this.HttpContext.User;
             return await this.HandleRequest<GetGlassesRequest, GetGlassesResponse>(request);
         }
 

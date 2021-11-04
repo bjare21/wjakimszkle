@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.ApplicationServices.API.Domain.Users.Models;
+using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.Controllers
 {
@@ -19,8 +20,8 @@ namespace Wjakimszkle.Controllers
     public class LoginController : ApiControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public LoginController(IMediator mediator, IConfiguration configuration, SignInManager<IdentityUser> signInManager) : base(mediator)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public LoginController(IMediator mediator, IConfiguration configuration, SignInManager<ApplicationUser> signInManager) : base(mediator)
         {
             this._configuration = configuration;
             this._signInManager = signInManager;

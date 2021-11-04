@@ -1,0 +1,12 @@
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Debug\net5.0\Wjakimszkle.Shared.deps.json
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Debug\net5.0\Wjakimszkle.Shared.dll
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Debug\net5.0\ref\Wjakimszkle.Shared.dll
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Debug\net5.0\Wjakimszkle.Shared.pdb
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.AssemblyInfoInputs.cache
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.AssemblyInfo.cs
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.csproj.CoreCompileInputs.cache
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.dll
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\ref\Wjakimszkle.Shared.dll
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.pdb
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Debug\net5.0\Wjakimszkle.Shared.csprojAssemblyReference.cache

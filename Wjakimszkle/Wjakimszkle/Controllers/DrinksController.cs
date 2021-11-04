@@ -9,6 +9,8 @@ using Wjakimszkle.DataAccess.Entities;
 using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Wjakimszkle.DataAccess.Paging;
 
 namespace Wjakimszkle.Controllers
 {
@@ -49,7 +51,15 @@ namespace Wjakimszkle.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllDrinks([FromQuery] GetDrinksRequest request)
         {
-            return await this.HandleRequest<GetDrinksRequest, GetDrinksResponse>(request);
+            var result = await this.HandleRequest<GetDrinksRequest, GetDrinksResponse>(request);
+
+            if (result is OkObjectResult)
+            {
+                var okResult = (OkObjectResult)result;
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(((GetDrinksResponse)okResult.Value).Data.MetaData));
+            };
+            
+            return result;
         }
 
         [HttpGet]

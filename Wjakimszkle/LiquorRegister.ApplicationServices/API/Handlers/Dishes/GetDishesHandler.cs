@@ -11,6 +11,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.Dishes;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
+using Wjakimszkle.DataAccess.Paging;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
 {
@@ -32,9 +33,17 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
 
             var mappedDishes = this.mapper.Map<List<Domain.Models.Dish>>(dishes);
 
+            PagedList<Domain.Models.Dish> list =
+                PagedList<Domain.Models.Dish>
+                .ToPagedList(
+                    mappedDishes,
+                    request.ItemParameters.PageNumber,
+                    request.ItemParameters.PageSize
+                    );
+
             var response = new GetDishesResponse()
             {
-                Data = mappedDishes
+                Data = list
             };
 
             return response;
