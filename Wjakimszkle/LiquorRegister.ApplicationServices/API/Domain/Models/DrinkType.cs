@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.DataAccess.Entities;
+using Wjakimszkle.Shared.Models.Drinks;
 
 namespace Wjakimszkle.ApplicationServices.API.Domain.Models
 {

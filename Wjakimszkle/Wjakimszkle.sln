@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp", "..\..\WJSBlazo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JBlazorLibrary", "..\..\..\Users\Hp\source\repos\JBlazorApp\JBlazorLibrary\JBlazorLibrary.csproj", "{091B4DB6-D13D-4D93-972F-014D64839718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjakimszkle.Shared", "Wjakimszkle.Shared\Wjakimszkle.Shared.csproj", "{D178290A-1F60-471E-8A35-B5D6647CD177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjakimszkle.Shared", "Wjakimszkle.Shared\Wjakimszkle.Shared.csproj", "{D178290A-1F60-471E-8A35-B5D6647CD177}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

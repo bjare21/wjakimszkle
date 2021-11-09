@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wjakimszkle.Shared.Models.Drinks;
 
 namespace Wjakimszkle.DataAccess.Entities
 {
@@ -15,20 +16,5 @@ namespace Wjakimszkle.DataAccess.Entities
         public List<Dish> Dishes { get; set; }
     }
 
-    public enum Genre
-    {
-        Beer,
-        Wine,
-        Whiskey,
-        Vodka,
-        Cider,
-        Mead,
-        Sake,
-        Gin,
-        Brandy,
-        Rum,
-        Tequila,
-        Absinthe,
-        Everclear
-    }
+    
 }
