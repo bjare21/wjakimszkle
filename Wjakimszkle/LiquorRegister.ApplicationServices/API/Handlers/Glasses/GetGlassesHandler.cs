@@ -11,6 +11,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.Glasses;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
+using Wjakimszkle.DataAccess.Paging;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Glasses
 {
@@ -30,9 +31,19 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Glasses
 
             var glasses = await this.queryExecutor.Execute(query);
 
+            var mappedGlasses = this.mapper.Map<List<Domain.Models.Glass>>(glasses);
+
+            PagedList<Domain.Models.Glass> list =
+                PagedList<Domain.Models.Glass>
+                .ToPagedList(
+                    mappedGlasses,
+                    request.ItemParameters.PageNumber,
+                    request.ItemParameters.PageSize
+                    );
+
             var response = new GetGlassesResponse()
             {
-                Data = this.mapper.Map<List<Domain.Models.Glass>>(glasses)
+                Data = list
             };
 
             return response;

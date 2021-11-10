@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,8 +63,14 @@ namespace Wjakimszkle.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllGlasses([FromQuery] GetGlassesRequest request)
         {
-            var user = this.HttpContext.User;
-            return await this.HandleRequest<GetGlassesRequest, GetGlassesResponse>(request);
+            var result = await this.HandleRequest<GetGlassesRequest, GetGlassesResponse>(request);
+            if (result is OkObjectResult)
+            {
+                var okResult = (OkObjectResult)result;
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(((GetGlassesResponse)okResult.Value).Data.MetaData));
+            };
+
+            return result;
         }
 
         
