@@ -8,14 +8,18 @@ using Wjakimszkle.DataAccess.Entities;
 
 namespace Wjakimszkle.DataAccess.CQRS.Queries
 {
-    public class GetDishByIdQuery:QueryBase<Dish>
+    public class GetDishByIdQuery : QueryBase<Dish>
     {
         public int Id { get; set; }
 
+
         public override async Task<Dish> Execute(LiquorRegisterContext context)
         {
-            return await context.Dishes.FirstOrDefaultAsync(
-                x => x.Id == this.Id);
+            var dish = await context.Dishes.
+                 Include(d => d.DrinkTypes)
+                 .FirstOrDefaultAsync(d => d.Id == this.Id);
+
+            return dish;
         }
     }
 }

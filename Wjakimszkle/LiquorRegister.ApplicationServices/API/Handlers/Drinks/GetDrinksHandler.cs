@@ -12,7 +12,7 @@ using Wjakimszkle.ApplicationServices.Components.CocktailDb;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
-using Wjakimszkle.DataAccess.Paging;
+using Wjakimszkle.Shared.QueryFeatures;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
 {
@@ -29,13 +29,12 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Drinks
         }
         public async Task<GetDrinksResponse> Handle(GetDrinksRequest request, CancellationToken cancellationToken)
         {
-            var cocktails = await this.cocktailDbConnector.Fetch("Cocktail_glass");
+            //var cocktails = await this.cocktailDbConnector.Fetch("Cocktail_glass");
 
             
 
             var query = new GetDrinksQuery()
             {
-                Name = request.Name,
                 ItemParameters = request.ItemParameters
             };
 

@@ -10,7 +10,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.DrinkTypes;
 using Wjakimszkle.ApplicationServices.API.Domain.Models;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
-using Wjakimszkle.DataAccess.Paging;
+using Wjakimszkle.Shared.QueryFeatures;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.DrinkTypes
 {
@@ -31,17 +31,9 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.DrinkTypes
             var drinkTypes = await this.queryExecutor.Execute(query);
             var mappedDrinkTypes = this.mapper.Map<List<DrinkType>>(drinkTypes);
 
-            PagedList<Domain.Models.DrinkType> types =
-                PagedList<Domain.Models.DrinkType>
-                .ToPagedList(
-                    mappedDrinkTypes,
-                    request.ItemParameters.PageNumber,
-                    request.ItemParameters.PageSize
-                    );
-
             return new GetAllDrinkTypesResponse()
             {
-                Data = types
+                Data = mappedDrinkTypes
             };
         }
     }

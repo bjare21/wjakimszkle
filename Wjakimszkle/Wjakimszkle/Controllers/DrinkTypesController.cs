@@ -21,13 +21,9 @@ namespace Wjakimszkle.Controllers
         }
 
         [HttpDelete]
-        [Route("Remove")]
-        public async Task<IActionResult> RemoveDrinkType([FromQuery] int drinkTypeId)
+        [Route("Remove/{Id}")]
+        public async Task<IActionResult> RemoveDrinkType([FromRoute] RemoveDrinkTypeRequest request)
         {
-            var request = new RemoveDrinkTypeRequest()
-            {
-                Id = drinkTypeId
-            };
             return await this.HandleRequest<RemoveDrinkTypeRequest, RemoveDrinkTypeResponse>(request);
         }
 
@@ -51,17 +47,25 @@ namespace Wjakimszkle.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllDrinkTypes([FromQuery] GetAllDrinkTypesRequest request)
+        public async Task<IActionResult> GetAllDrinkTypesPaged ([FromQuery] GetAllDrinkTypesPagedRequest request)
         {
-            var result =  await this.HandleRequest<GetAllDrinkTypesRequest, GetAllDrinkTypesResponse>(request);
-            
-            if(result is OkObjectResult)
+            var result = await this.HandleRequest<GetAllDrinkTypesPagedRequest, GetAllDrinkTypesPagedResponse>(request);
+
+            if (result is OkObjectResult)
             {
                 var okResult = (OkObjectResult)result;
-                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(((GetAllDrinkTypesResponse)okResult.Value).Data.MetaData));
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(((GetAllDrinkTypesPagedResponse)okResult.Value).Data.MetaData));
             };
 
             return result;
+        }
+
+
+        [HttpGet]
+        [Route("All")]
+        public async Task<IActionResult> GetAllDrinkTypes([FromQuery] GetAllDrinkTypesRequest request)
+        {
+            return await this.HandleRequest<GetAllDrinkTypesRequest, GetAllDrinkTypesResponse>(request);
         }
 
         [HttpPost]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wjakimszkle.DataAccess.Paging
+namespace Wjakimszkle.Shared.QueryFeatures
 {
     public class PagedList<T>:List<T>
     {

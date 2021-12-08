@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.DataAccess.Entities;
-using Wjakimszkle.DataAccess.Paging;
 
 namespace Wjakimszkle.DataAccess.CQRS.Queries
 {

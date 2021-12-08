@@ -11,7 +11,7 @@ using Wjakimszkle.ApplicationServices.API.Domain.Dishes;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.CQRS.Queries;
 using Wjakimszkle.DataAccess.Entities;
-using Wjakimszkle.DataAccess.Paging;
+using Wjakimszkle.Shared.QueryFeatures;
 
 namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
 {

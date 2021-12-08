@@ -63,5 +63,20 @@ namespace Wjakimszkle.Controllers
 
             return result;
         }
+
+        [HttpGet]
+        [Route("GetDishWithPairedDrinkTypes/{Id}")]
+        public async Task<IActionResult> GetDishWithPairedDrinkTypes([FromRoute] GetDishWithPairedDrinkTypesRequest request)
+        {
+            return await this.HandleRequest<GetDishWithPairedDrinkTypesRequest, GetDishWithPairedDrinkTypesResponse>(request);
+        }
+
+
+        [HttpPut]
+        [Route("AddPairings")]
+        public async Task<IActionResult> PairDrinkTypesWithDish([FromBody] PairDrinkTypesWithDishRequest request)
+        {
+            return await this.HandleRequest<PairDrinkTypesWithDishRequest, PairDrinkTypesWithDishResponse>(request);
+        }
     }
 }

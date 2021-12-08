@@ -10,7 +10,7 @@ using Wjakimszkle.ApplicationServices.API.Domain;
 using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Wjakimszkle.DataAccess.Paging;
+using Wjakimszkle.Shared.QueryFeatures;
 
 namespace Wjakimszkle.Controllers
 {
@@ -83,6 +83,13 @@ namespace Wjakimszkle.Controllers
             };
 
             return await this.HandleRequest<GetDrinksByGlassIdRequest, GetDrinksByGlassIdResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("GetDrinksForDrinkTypes")]
+        public async Task<IActionResult> GetDrinksForDrinkTypes([FromQuery] GetDrinksForDrinkTypesRequest request)
+        {
+            return await this.HandleRequest<GetDrinksForDrinkTypesRequest, GetDrinksForDrinkTypesResponse>(request);
         }
 
         [HttpGet]

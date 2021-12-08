@@ -130,6 +130,10 @@ namespace Wjakimszkle
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wjakimszkle v1"));
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
             app.UseCors();
             app.UseHttpsRedirection();
 

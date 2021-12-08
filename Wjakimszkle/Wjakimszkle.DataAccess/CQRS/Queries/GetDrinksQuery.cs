@@ -5,21 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wjakimszkle.DataAccess.Entities;
-using Wjakimszkle.DataAccess.Paging;
+using Wjakimszkle.Shared.QueryFeatures;
 
 namespace Wjakimszkle.DataAccess.CQRS.Queries
 {
     public class GetDrinksQuery:QueryBase<List<Drink>>
     {
-        public ItemParameters ItemParameters;
-        public string Name { get; set; }
+        public DrinksParameters ItemParameters;
         public override async Task<List<Drink>> Execute(LiquorRegisterContext context)
         {
-            var allItems = !string.IsNullOrWhiteSpace(this.Name)?
-                await context.Drinks.Include(d=>d.DrinkType).Where(x=>x.Name  == this.Name).ToListAsync()
-                :await context.Drinks.Include(d=>d.DrinkType).ToListAsync();
+            var drinks = await context.Drinks.Include(d=>d.DrinkType).ToListAsync();
 
-            return allItems;
+            if (!string.IsNullOrEmpty(ItemParameters.SearchName))
+                drinks = drinks.Where(d => d.Name.ToLower().Contains(ItemParameters.SearchName.ToLower())).ToList();
+
+            if (ItemParameters.SearchDrinkTypeId > 0)
+            {
+                drinks = drinks.Where(d => d.DrinkType != null && d.DrinkType.Id == ItemParameters.SearchDrinkTypeId).ToList();
+            }
+
+            return drinks;
         }
     }
 }

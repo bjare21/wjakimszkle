@@ -12,7 +12,8 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
     {
         public override async Task<List<DrinkType>> Execute(LiquorRegisterContext context)
         {
-            return await context.DrinkTypes.ToListAsync();
+            var drinkTypes = await context.DrinkTypes.ToListAsync();
+            return drinkTypes != null ? drinkTypes : new List<DrinkType>();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
             }
             else
             {
-                response.Data = dish;
+                response.Data = this.mapper.Map<Domain.Models.Dish>(dish);
             }
             return response;
         }

@@ -18,6 +18,6 @@ namespace Wjakimszkle.DataAccess.Entities
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
 
-        public List<DrinkType> DrinkTypes { get; set; }
+        public List<DrinkType> DrinkTypes { get; set; } = new List<DrinkType>();
     }
 }

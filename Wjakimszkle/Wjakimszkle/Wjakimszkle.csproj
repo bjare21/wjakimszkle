@@ -36,7 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="StaticFiles\Images\" />
+    <Folder Include="StaticFiles\Images\">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Folder>
   </ItemGroup>
 
 </Project>

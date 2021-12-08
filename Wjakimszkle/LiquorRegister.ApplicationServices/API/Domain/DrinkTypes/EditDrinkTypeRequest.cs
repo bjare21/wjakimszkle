@@ -10,5 +10,7 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.DrinkTypes
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public int Genre { get; set; }
     }
 }
