@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ae2dc59e-1ff0-460a-b5e2-51b38e7931ff": {
+      "ProjectGuid": "ae2dc59e-1ff0-460a-b5e2-51b38e7931ff",
+      "DisplayName": "BlazorApp",
+      "ColorIndex": 0
+    },
+    "b3274fc8-edc2-436f-9b27-88e0e8f2e248": {
+      "ProjectGuid": "b3274fc8-edc2-436f-9b27-88e0e8f2e248",
+      "DisplayName": "Wjakimszkle",
+      "ColorIndex": 1
+    },
+    "331efb90-c21b-4dd0-a70a-9eb115990e72": {
+      "ProjectGuid": "331efb90-c21b-4dd0-a70a-9eb115990e72",
+      "DisplayName": "Wjakimszkle.DataAccess",
+      "ColorIndex": 2
+    },
+    "919fd655-f067-4ba2-b932-d926e85dd6b4": {
+      "ProjectGuid": "919fd655-f067-4ba2-b932-d926e85dd6b4",
+      "DisplayName": "Dokumenty skryptów",
+      "ColorIndex": 3
+    },
+    "091b4db6-d13d-4d93-972f-014d64839718": {
+      "ProjectGuid": "091b4db6-d13d-4d93-972f-014d64839718",
+      "DisplayName": "JBlazorLibrary",
+      "ColorIndex": 4
+    },
+    "d178290a-1f60-471e-8a35-b5d6647cd177": {
+      "ProjectGuid": "d178290a-1f60-471e-8a35-b5d6647cd177",
+      "DisplayName": "Wjakimszkle.Shared",
+      "ColorIndex": 5
+    },
+    "313ff8d3-f254-42b7-b47d-f89bd7b3a0b9": {
+      "ProjectGuid": "313ff8d3-f254-42b7-b47d-f89bd7b3a0b9",
+      "DisplayName": "Wjakimszkle.ApplicationServices",
+      "ColorIndex": 6
+    }
+  },
+  "NextColorIndex": 7
+}

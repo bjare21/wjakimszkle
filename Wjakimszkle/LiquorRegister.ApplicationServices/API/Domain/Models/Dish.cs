@@ -15,6 +15,6 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.Models
 
         public string ImageUrl { get; set; }
 
-        public List<DrinkType> DrinkTypes { get; set; } = new List<DrinkType>();
+        public List<DrinkType> DrinkTypes { get; set; }
     }
 }

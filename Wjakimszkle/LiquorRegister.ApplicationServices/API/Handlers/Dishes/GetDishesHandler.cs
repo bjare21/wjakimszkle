@@ -27,9 +27,13 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.Dishes
 
         public async Task<GetDishesResponse> Handle(GetDishesRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetAllDishesQuery();
+            var query = new GetAllDishesQuery()
+            {
+                DrinkTypeId = request.ItemParameters.DrinkTypeId
+            };
 
             var dishes = await this.queryExecutor.Execute(query);
+           
 
             var mappedDishes = this.mapper.Map<List<Domain.Models.Dish>>(dishes);
 

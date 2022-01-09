@@ -26,7 +26,10 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.DrinkTypes
         public async Task<AddDrinkTypeResponse> Handle(AddDrinkTypeRequest request, CancellationToken cancellationToken)
         {
             var drinkType = this.mapper.Map<DataAccess.Entities.DrinkType>(request);
-            var command = new AddDrinkTypeCommand() { Parameter = drinkType };
+            var command = new AddDrinkTypeCommand() { 
+                Parameter = drinkType,
+                GlassesIds = request.GlassesIds.Select(g=>Int32.Parse(g)).ToList()
+            };
             var drinkTypeDb = await this.commandExecutor.Execute(command);
 
             return new AddDrinkTypeResponse()

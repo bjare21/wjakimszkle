@@ -17,5 +17,7 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.Models
 
         public string ImageUrl { get; set; }
         public string Description { get; set; }
+
+        public List<Glass> Glasses { get; set; } = new List<Glass>();
     }
 }

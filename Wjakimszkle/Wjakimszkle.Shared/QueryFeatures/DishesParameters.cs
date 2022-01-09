@@ -8,5 +8,9 @@ namespace Wjakimszkle.Shared.QueryFeatures
 {
     public class DishesParameters:ItemParameters
     {
+        /// <summary>
+        /// Id rodzaju drinka z jakim sparowane są wyszukiwane dania
+        /// </summary>
+        public int DrinkTypeId { get; set; }
     }
 }

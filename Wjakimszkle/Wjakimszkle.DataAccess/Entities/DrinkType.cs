@@ -11,8 +11,8 @@ namespace Wjakimszkle.DataAccess.Entities
     {
         public string Name { get; set; }
         public Genre Genre { get; set; }
-        public List<Drink> Drinks { get; set; }
-        public List<Glass> Glasses { get; set; }
+        public List<Drink> Drinks { get; set; } = new List<Drink>();
+        public List<Glass> Glasses { get; set; } = new List<Glass>();
         public List<Dish> Dishes { get; set; } = new List<Dish>();
     }
 

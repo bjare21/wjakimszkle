@@ -46,6 +46,12 @@ namespace Wjakimszkle.Controllers
         }
 
         [HttpGet]
+        [Route("GetWithRelated/{Id}")]
+        public async Task<IActionResult> GetDrinkTypeWithRelatedFields([FromRoute] GetDrinkTypeWithRelatedFieldsRequest request)
+        {
+            return await this.HandleRequest<GetDrinkTypeWithRelatedFieldsRequest, GetDrinkTypeWithRelatedFieldsResponse>(request);
+        }
+        [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllDrinkTypesPaged ([FromQuery] GetAllDrinkTypesPagedRequest request)
         {

@@ -25,8 +25,9 @@ namespace Wjakimszkle
                 }).ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
-                    logging.SetMinimumLevel(LogLevel.Trace);
-                })
-            .UseNLog();
+                    logging.AddApplicationInsights("d8b86322-c816-463d-bd67-f1a7aae4d5d5");
+                    logging.AddDebug();
+                });
+            
     }
 }

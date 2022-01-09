@@ -2,7 +2,6 @@ C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Release\net5.0\Wjakimszk
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Release\net5.0\Wjakimszkle.Shared.dll
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Release\net5.0\ref\Wjakimszkle.Shared.dll
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\bin\Release\net5.0\Wjakimszkle.Shared.pdb
-C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.csprojAssemblyReference.cache
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.GeneratedMSBuildEditorConfig.editorconfig
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.AssemblyInfoInputs.cache
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.AssemblyInfo.cs
@@ -10,3 +9,4 @@ C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszk
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.dll
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\ref\Wjakimszkle.Shared.dll
 C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.pdb
+C:\repos\wjakimszkle\Wjakimszkle\Wjakimszkle.Shared\obj\Release\net5.0\Wjakimszkle.Shared.csproj.AssemblyReference.cache

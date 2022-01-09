@@ -73,6 +73,13 @@ namespace Wjakimszkle.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("All")]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllGlassesRequest request)
+        {
+            return await this.HandleRequest<GetAllGlassesRequest, GetAllGlassesResponse>(request);
+        }
+
         
     }
 }

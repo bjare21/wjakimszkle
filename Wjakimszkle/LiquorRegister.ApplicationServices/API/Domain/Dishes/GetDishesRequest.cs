@@ -10,7 +10,7 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.Dishes
 {
     public class GetDishesRequest:RequestBase<GetDishesResponse>
     {
-        public ItemParameters ItemParameters { get; set; }
+        public DishesParameters ItemParameters { get; set; }
     }
 
 }

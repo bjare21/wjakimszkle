@@ -11,6 +11,8 @@ using Wjakimszkle.ApplicationServices.API.Domain.Drinks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Wjakimszkle.Shared.QueryFeatures;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Wjakimszkle.Controllers
 {
@@ -19,20 +21,27 @@ namespace Wjakimszkle.Controllers
     public class DrinksController : ApiControllerBase
     {
         private readonly ILogger<DrinksController> logger;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public DrinksController(IMediator mediator, ILogger<DrinksController> logger) : base(mediator)
+        public DrinksController(IMediator mediator, ILogger<DrinksController> logger, UserManager<ApplicationUser> userManager) : base(mediator)
         {
             this.logger = logger;
-            this.logger.LogInformation(message:"We are in drinks controller");
+            this.userManager = userManager;
         }
 
+        [Authorize(Roles ="Editor")]
         [HttpPost]
         [Route("Add")]
         public async Task<IActionResult> Add([FromBody] AddDrinkRequest request)
         {
-            return await this.HandleRequest<AddDrinkRequest,AddDrinkResponse>(request);
+            this.logger.LogInformation(message: "Adding drink with name = {0}", request.Name);
+            
+            var result = await this.HandleRequest<AddDrinkRequest, AddDrinkResponse>(request);
+
+            return result;
         }
 
+        [Authorize(Roles ="Editor")]
         [HttpPut]
         [Route("Edit")]
         public async Task<IActionResult> Edit([FromBody] EditDrinkRequest request)
@@ -53,6 +62,10 @@ namespace Wjakimszkle.Controllers
         {
             var result = await this.HandleRequest<GetDrinksRequest, GetDrinksResponse>(request);
 
+            //var user = this.HttpContext.User;
+            
+            this.logger.LogInformation(message: "User access all drinks.");
+
             if (result is OkObjectResult)
             {
                 var okResult = (OkObjectResult)result;
@@ -66,11 +79,21 @@ namespace Wjakimszkle.Controllers
         [Route("Get/{id}")]
         public Task<IActionResult> GetDrinkById([FromRoute] int id)
         {
+            this.logger.LogInformation("Get drink {id}", id);
+
             var request = new GetDrinkByIdRequest()
             {
                 DrinkId = id
             };
             return this.HandleRequest<GetDrinkByIdRequest, GetDrinkByIdResponse>(request);
+        }
+
+        [Authorize("User")]
+        [HttpGet]
+        [Route("GetWithRelated/{Id}")]
+        public async Task<IActionResult> GetDrinkWithRelated([FromRoute] GetDrinkWithRelatedRequest request)
+        {
+            return await this.HandleRequest<GetDrinkWithRelatedRequest, GetDrinkWithRelatedResponse>(request);
         }
 
         [HttpGet]

@@ -57,7 +57,7 @@ namespace Wjakimszkle
                         .WithExposedHeaders("X-Pagination");
                     });
             });
-
+            services.AddApplicationInsightsTelemetry();
             services.AddMediatR(typeof(RequestBase<>));
 
             services.AddDbContext<LiquorRegisterContext>(
@@ -108,11 +108,7 @@ namespace Wjakimszkle
 
             //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-           
-
             
-
-
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
