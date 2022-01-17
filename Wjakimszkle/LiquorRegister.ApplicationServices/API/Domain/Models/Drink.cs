@@ -19,5 +19,7 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.Models
         public string Description { get; set; }
 
         public List<Glass> Glasses { get; set; } = new List<Glass>();
+
+        public int ServingTemperature { get; set; }
     }
 }

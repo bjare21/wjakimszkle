@@ -28,7 +28,7 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.DrinkTypes
             var drinkType = this.mapper.Map<DataAccess.Entities.DrinkType>(request);
             var command = new AddDrinkTypeCommand() { 
                 Parameter = drinkType,
-                GlassesIds = request.GlassesIds.Select(g=>Int32.Parse(g)).ToList()
+                GlassesIds = request.Glasses.Select(g=>Int32.Parse(g)).ToList()
             };
             var drinkTypeDb = await this.commandExecutor.Execute(command);
 

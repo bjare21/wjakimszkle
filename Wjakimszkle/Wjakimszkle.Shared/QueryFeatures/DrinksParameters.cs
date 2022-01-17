@@ -10,5 +10,7 @@ namespace Wjakimszkle.Shared.QueryFeatures
     {
         public string SearchName { get; set; }
         public int SearchDrinkTypeId { get; set; }
+
+        public List<string> DrinkTypeIds { get; set; } = new List<string>();
     }
 }

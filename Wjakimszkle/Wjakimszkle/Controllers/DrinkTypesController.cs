@@ -66,13 +66,20 @@ namespace Wjakimszkle.Controllers
             return result;
         }
 
-
         [HttpGet]
         [Route("All")]
         public async Task<IActionResult> GetAllDrinkTypes([FromQuery] GetAllDrinkTypesRequest request)
         {
             return await this.HandleRequest<GetAllDrinkTypesRequest, GetAllDrinkTypesResponse>(request);
         }
+
+        [HttpGet]
+        [Route("GetForIds")]
+        public async Task<IActionResult> GetDrinkTypesForIds([FromQuery] GetDrinkTypesForIdsRequest request)
+        {
+            return await this.HandleRequest<GetDrinkTypesForIdsRequest, GetDrinkTypesForIdsResponse>(request);
+        }
+
 
         [HttpPost]
         [Route("Add")]

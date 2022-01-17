@@ -12,5 +12,7 @@ namespace Wjakimszkle.ApplicationServices.API.Domain.DrinkTypes
         public string Name { get; set; }
 
         public int Genre { get; set; }
+
+        public List<string> Glasses { get; set; }
     }
 }

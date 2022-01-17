@@ -13,7 +13,7 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
         public int Id { get; set; }
         public override async Task<Glass> Execute(LiquorRegisterContext context)
         {
-            return await context.Glasses.SingleOrDefaultAsync(g => g.Id == Id);
+            return await context.Glasses.Include(g=>g.DrinkTypes).SingleOrDefaultAsync(g => g.Id == Id);
         }
     }
 }

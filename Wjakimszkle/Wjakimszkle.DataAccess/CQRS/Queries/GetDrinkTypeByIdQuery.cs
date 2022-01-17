@@ -14,7 +14,7 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
 
         public override Task<DrinkType> Execute(LiquorRegisterContext context)
         {
-            return context.DrinkTypes.FirstOrDefaultAsync(dt => dt.Id == this.Id);
+            return context.DrinkTypes.Include(dt=>dt.Glasses).FirstOrDefaultAsync(dt => dt.Id == this.Id);
         }
     }
 }

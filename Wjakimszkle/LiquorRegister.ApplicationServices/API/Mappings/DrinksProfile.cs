@@ -34,7 +34,8 @@ namespace Wjakimszkle.ApplicationServices.API.Mappings
                 .ForMember(d => d.DrinkTypeId, m => m.MapFrom(r => r.DrinkType.Id))
                 .ForMember(d => d.ImageUrl, m => m.MapFrom(r => r.ImageUrl))
                 .ForMember(d => d.Description, m => m.MapFrom(r => r.Description))
-                .ForMember(d => d.Glasses, m => m.MapFrom(r => r.DrinkType.Glasses));
+                .ForMember(d => d.Glasses, m => m.MapFrom(r => r.DrinkType.Glasses))
+                .ForMember(d => d.ServingTemperature, m => m.MapFrom(r => r.DrinkType.ServingTemperature));
 
             this.CreateMap<Components.CocktailDb.Drink, Domain.Models.Drink>()
                 .ForMember(d => d.Name, m => m.MapFrom(r => r.Name));

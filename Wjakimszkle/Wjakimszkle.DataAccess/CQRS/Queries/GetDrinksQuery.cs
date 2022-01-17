@@ -14,8 +14,14 @@ namespace Wjakimszkle.DataAccess.CQRS.Queries
         public DrinksParameters ItemParameters;
         public override async Task<List<Drink>> Execute(LiquorRegisterContext context)
         {
-            var drinks = await context.Drinks.Include(d=>d.DrinkType).ToListAsync();
-
+            var drinks = await context.Drinks
+                .Include(d=>d.DrinkType)
+                .ThenInclude(dt=>dt.Glasses)
+                .ToListAsync();
+            if (ItemParameters.DrinkTypeIds.Count > 0)
+            {
+                drinks = drinks.Where(d => ItemParameters.DrinkTypeIds.Contains(d.DrinkType.Id.ToString())).ToList();
+            }
             if (!string.IsNullOrEmpty(ItemParameters.SearchName))
                 drinks = drinks.Where(d => d.Name.ToLower().Contains(ItemParameters.SearchName.ToLower())).ToList();
 

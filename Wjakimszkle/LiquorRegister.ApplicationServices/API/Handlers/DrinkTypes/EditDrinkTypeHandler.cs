@@ -29,7 +29,8 @@ namespace Wjakimszkle.ApplicationServices.API.Handlers.DrinkTypes
         {
             var command = new EditDrinkTypeCommand()
             {
-                Parameter = this.mapper.Map<DrinkType>(request)
+                Parameter = this.mapper.Map<DrinkType>(request),
+                GlassesIds = request.Glasses
             };
 
             var result = await this.commandExecutor.Execute(command);
