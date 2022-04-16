@@ -10,4 +10,4 @@ Aplikacja umożliwiająca znalezienie odpowiednich parowań napojów alkoholowyc
 
 # Opis użytych technologii
 
-Web API napisane w ASP NET Core. Tutaj dostępna jest też [aplikacja kliencka napisana w Blazor](https://github.com/bjare21/WJSBlazorApp)
+Web API napisane w ASP NET Core wraz z bazą danych SQL. Tutaj dostępna jest też [aplikacja kliencka napisana w Blazor](https://github.com/bjare21/WJSBlazorApp)
