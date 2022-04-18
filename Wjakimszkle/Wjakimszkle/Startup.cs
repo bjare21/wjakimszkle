@@ -30,6 +30,7 @@ using Wjakimszkle.ApplicationServices.Components.CocktailDb;
 using Wjakimszkle.Authentication;
 using Wjakimszkle.DataAccess;
 using Wjakimszkle.DataAccess.Entities;
+using Wjakimszkle.Shared.Configuration;
 
 namespace Wjakimszkle
 {
@@ -45,20 +46,36 @@ namespace Wjakimszkle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Konfiguracja CORS, ustawia domyœln¹ politykê z wskazanym Ÿród³em, które mo¿e wysy³aæ zapytania do aplikacji
+            //Wskazuje nag³ówek wykorzystywany do obs³u¿enia paginacji.
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
                     builder =>
                     {
                         builder
-                        .AllowAnyOrigin()
+                        .WithOrigins("http://wjakimszkle.pl")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .WithExposedHeaders("X-Pagination");
                     });
             });
+
+            //Obiekt enkapsuluj¹cy connectionstringa, tak aby by³ on pozyskiwany z pliku konfiguracji
+            //i jednoczeœnie by³ dostêpny w projekcie ...DataAcccess
+            var appSettings = new AppSettings
+            {
+                ConnectionString = this.Configuration.GetConnectionString("LiquorRegisterDatabaseConnection")
+            };
+            services.AddSingleton(appSettings);
+
+            //Uruchamia telemetriê Application Insights (azure)
             services.AddApplicationInsightsTelemetry();
+            
+            //Rejestracja frameworka MediatR, który wykorzystujemy przy implementacji CQRS-a -> handlery w ...AplicationServices.API.Handlers
             services.AddMediatR(typeof(RequestBase<>));
+
 
             services.AddDbContext<LiquorRegisterContext>(
                 opt => opt.UseSqlServer(this.Configuration.GetConnectionString("LiquorRegisterDatabaseConnection")));
